@@ -121,9 +121,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: Public embeddable web form and authenticated REST ingest API with API key authentication and rate limiting.
-- [ ] 06-02: Webhook security layer (HMAC verification, idempotency) and Meta Lead Ads / WhatsApp Cloud API adapters.
-- [ ] 06-03: Email and Business Phone call-logger adapters with the Integrations Hub management dashboard and sandbox simulator.
+- [x] 06-01: Public embeddable web form and authenticated REST ingest API with API key authentication and rate limiting.
+- [x] 06-02: Webhook security layer (HMAC verification, idempotency) and Meta Lead Ads / WhatsApp Cloud API adapters.
+- [x] 06-03: Email and Business Phone call-logger adapters with the Integrations Hub management dashboard and sandbox simulator.
 
 ### Phase 7: Workflow Automation Engine
 **Goal**: Build an internal, durable workflow automation engine that evaluates configurable triggers and conditions to execute automated tasks, assignments, status changes, and notifications.
