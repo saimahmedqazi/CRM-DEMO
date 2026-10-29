@@ -188,16 +188,16 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AUTO-03 | Phase 7 | Completed |
 | AUTO-04 | Phase 7 | Completed |
 | AUTO-05 | Phase 7 | Completed |
-| AI-01 | Phase 8 | Pending |
-| AI-02 | Phase 8 | Pending |
-| AI-03 | Phase 8 | Pending |
-| AI-04 | Phase 8 | Pending |
-| AI-05 | Phase 8 | Pending |
-| SEC-01 | Phase 8 | Pending |
-| SEC-02 | Phase 8 | Pending |
-| SEC-03 | Phase 8 | Pending |
-| SEC-04 | Phase 8 | Pending |
-| SEC-05 | Phase 8 | Pending |
+| AI-01 | Phase 8 | Completed |
+| AI-02 | Phase 8 | Completed |
+| AI-03 | Phase 8 | Completed |
+| AI-04 | Phase 8 | Completed |
+| AI-05 | Phase 8 | Completed |
+| SEC-01 | Phase 8 | Completed |
+| SEC-02 | Phase 8 | Completed |
+| SEC-03 | Phase 8 | Completed |
+| SEC-04 | Phase 8 | Completed |
+| SEC-05 | Phase 8 | Completed |
 
 **Coverage:**
 - v1 requirements: 60 total

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { type InquiryRecord, type InquiryStatus, leadService } from "@/lib/services/lead-service";
+import { AIAssistantWidget } from "@/components/lead-inbox/ai-assistant-widget";
 
 interface EnrichedInquiry extends InquiryRecord {
   contactName: string;
@@ -158,6 +159,16 @@ export function LeadDetailDrawer({ inquiry, orgSlug, onClose, onUpdated }: LeadD
               </div>
             </div>
           )}
+
+          {/* AI Clinical Assistant Widget (POPIA Safe) */}
+          <AIAssistantWidget
+            patientName={inquiry.contactName}
+            patientPhone={inquiry.contactPhone}
+            patientEmail={inquiry.contactEmail}
+            source={inquiry.source}
+            notes={inquiry.notes}
+            clinicLocation={inquiry.location_id?.includes("blt") ? "Ballito Clinic" : "Durban Clinic"}
+          />
 
           {/* Quick Staff Note Entry */}
           <div>

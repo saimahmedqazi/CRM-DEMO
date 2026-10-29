@@ -402,6 +402,42 @@ class LeadRepository {
     }
   }
 
+  public anonymizeContact(orgId: string, contactId: string): boolean {
+    const contact = this.contacts.find((c) => c.id === contactId && c.organization_id === orgId);
+    if (!contact) return false;
+
+    // 1. Scrub contact PII
+    contact.first_name = "Anonymized";
+    contact.last_name = "Patient";
+    contact.email = null;
+    contact.phone = null;
+    contact.phone_normalized = null;
+    contact.custom_fields = { popia_anonymized: true, anonymized_at: new Date().toISOString() };
+    contact.tags = ["POPIA Anonymized"];
+    contact.updated_at = new Date().toISOString();
+
+    // 2. Scrub inquiries notes
+    this.inquiries.forEach((inq) => {
+      if (inq.organization_id === orgId && inq.contact_id === contactId) {
+        inq.notes = "[Anonymized per POPIA Section 24]";
+        inq.custom_fields = {};
+        inq.tags = ["POPIA Anonymized"];
+        inq.updated_at = new Date().toISOString();
+      }
+    });
+
+    // 3. Scrub activity notes
+    this.activities.forEach((act) => {
+      if (act.organization_id === orgId && act.contact_id === contactId) {
+        act.title = "Activity Anonymized";
+        act.description = "[Anonymized per POPIA Section 24]";
+        act.metadata = {};
+      }
+    });
+
+    return true;
+  }
+
   private seedDemoData() {
     const orgId = "hoffman-audiology";
     const demoLeads: CreateLeadInput[] = [
