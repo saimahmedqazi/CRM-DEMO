@@ -26,13 +26,18 @@ export type InquiryStatus =
 export type InquiryPriority = "low" | "medium" | "high" | "urgent";
 
 export interface CreateLeadInput {
-  organizationId: string;
-  firstName: string;
-  lastName: string;
+  organizationId?: string;
+  organization_id?: string;
+  firstName?: string;
+  first_name?: string;
+  lastName?: string;
+  last_name?: string;
   email?: string | null;
   phone?: string | null;
   locationId?: string | null;
+  location_id?: string | null;
   source: InquirySource;
+  status?: InquiryStatus;
   notes?: string | null;
   priority?: InquiryPriority;
   tags?: string[];
@@ -117,13 +122,18 @@ class LeadRepository {
   }
 
   public createLead(input: CreateLeadInput): { contact: ContactRecord; inquiry: InquiryRecord; isExistingContact: boolean } {
+    const orgId = (input.organizationId || input.organization_id || "hoffman-audiology");
+    const rawFirst = input.firstName || input.first_name || "Unknown";
+    const rawLast = input.lastName || input.last_name || "";
+    const locId = input.locationId || input.location_id || null;
+
     const normalizedPhone = normalizePhone(input.phone);
     const normalizedEmail = normalizeEmail(input.email);
-    const firstName = normalizeName(input.firstName);
-    const lastName = normalizeName(input.lastName);
+    const firstName = normalizeName(rawFirst);
+    const lastName = normalizeName(rawLast);
 
     // Step 1: Deduplication check
-    const existingContact = this.findDuplicateContact(input.organizationId, normalizedPhone, normalizedEmail);
+    const existingContact = this.findDuplicateContact(orgId, normalizedPhone, normalizedEmail);
 
     let contact: ContactRecord;
     let isExistingContact = false;
@@ -141,13 +151,13 @@ class LeadRepository {
     } else {
       contact = {
         id: `cnt-${Math.random().toString(36).substring(2, 9)}`,
-        organization_id: input.organizationId,
+        organization_id: orgId,
         first_name: firstName,
         last_name: lastName,
         email: normalizedEmail,
         phone: input.phone || null,
         phone_normalized: normalizedPhone,
-        preferred_location_id: input.locationId || null,
+        preferred_location_id: locId,
         custom_fields: input.customFields || {},
         tags: input.tags || [],
         created_at: now,
@@ -159,12 +169,12 @@ class LeadRepository {
     // Step 2: Create Inquiry
     const inquiry: InquiryRecord = {
       id: `inq-${Math.random().toString(36).substring(2, 9)}`,
-      organization_id: input.organizationId,
+      organization_id: orgId,
       contact_id: contact.id,
-      location_id: input.locationId || contact.preferred_location_id,
+      location_id: locId || contact.preferred_location_id,
       assigned_user_id: input.assignedUserId || null,
       source: input.source,
-      status: "new",
+      status: input.status || "new",
       priority: input.priority || "medium",
       loss_reason: null,
       notes: input.notes || null,
@@ -179,7 +189,7 @@ class LeadRepository {
     // Step 3: Record Activity Log
     this.activities.push({
       id: `act-${Math.random().toString(36).substring(2, 9)}`,
-      organization_id: input.organizationId,
+      organization_id: orgId,
       contact_id: contact.id,
       inquiry_id: inquiry.id,
       staff_name: input.staffName || "System / Ingestion",
@@ -188,15 +198,50 @@ class LeadRepository {
         ? `Repeat inquiry received from ${input.source}`
         : `New lead captured from ${input.source}`,
       description: input.notes || `Inquiry created via ${input.source}`,
-      metadata: {
-        source: input.source,
-        location_id: input.locationId,
-        priority: inquiry.priority,
-      },
+      metadata: { source: input.source, isExistingContact },
       created_at: now,
     });
 
     return { contact, inquiry, isExistingContact };
+  }
+
+  public findContactsByOrg(orgId: string): ContactRecord[] {
+    return this.contacts.filter((c) => c.organization_id === orgId && !(c as any).is_archived);
+  }
+
+  public findInquiriesByContact(contactId: string): InquiryRecord[] {
+    return this.inquiries
+      .filter((i) => i.contact_id === contactId)
+      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+  }
+
+  public recordActivity(activity: {
+    organization_id: string;
+    contact_id: string;
+    inquiry_id?: string;
+    activity_type: string;
+    title: string;
+    content?: string;
+    staff_name?: string;
+  }): ActivityRecord {
+    const act: ActivityRecord = {
+      id: `act-${Math.random().toString(36).substring(2, 9)}`,
+      organization_id: activity.organization_id,
+      contact_id: activity.contact_id,
+      inquiry_id: activity.inquiry_id,
+      staff_name: activity.staff_name || "System",
+      activity_type: activity.activity_type,
+      title: activity.title,
+      description: activity.content || null,
+      metadata: {},
+      created_at: new Date().toISOString(),
+    };
+    this.activities.push(act);
+    return act;
+  }
+
+  public updateInquiryStage(orgId: string, inquiryId: string, newStage: InquiryStatus, lossReason?: string): boolean {
+    return this.updateInquiryStatus(orgId, inquiryId, newStage, lossReason);
   }
 
   public getInquiries(params: {

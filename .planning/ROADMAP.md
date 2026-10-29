@@ -87,8 +87,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: Appointment data model, lifecycle state machine, and scheduling UI with outcome logging.
-- [ ] 04-02: Calendar synchronization adapters, idempotent event reconciliation, and the Unmatched Booking Review Queue.
+- [x] 04-01: Appointment data model, lifecycle state machine, and scheduling UI with outcome logging.
+- [x] 04-02: Calendar synchronization adapters, idempotent event reconciliation, and the Unmatched Booking Review Queue.
 
 ### Phase 5: Conversion & Source Attribution Analytics
 **Goal**: Deliver actionable business intelligence dashboards answering executive questions on inquiry volume, response velocity, appointment conversion rates, channel attribution, and loss analysis.

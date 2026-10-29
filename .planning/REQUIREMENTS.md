@@ -164,11 +164,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TASK-02 | Phase 3 | Completed |
 | TASK-03 | Phase 3 | Completed |
 | TASK-04 | Phase 3 | Completed |
-| APPT-01 | Phase 4 | Pending |
-| APPT-02 | Phase 4 | Pending |
-| APPT-03 | Phase 4 | Pending |
-| APPT-04 | Phase 4 | Pending |
-| APPT-05 | Phase 4 | Pending |
+| APPT-01 | Phase 4 | Completed |
+| APPT-02 | Phase 4 | Completed |
+| APPT-03 | Phase 4 | Completed |
+| APPT-04 | Phase 4 | Completed |
+| APPT-05 | Phase 4 | Completed |
 | ANLY-01 | Phase 5 | Pending |
 | ANLY-02 | Phase 5 | Pending |
 | ANLY-03 | Phase 5 | Pending |
