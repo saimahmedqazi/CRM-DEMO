@@ -70,9 +70,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: Configurable pipeline schema, stage transitions, loss reason modals, and drag-and-drop Kanban view.
-- [ ] 03-02: Daily Action Queue UI, task assignment, due date scheduling, and status completion actions.
-- [ ] 03-03: Business hours SLA calculation engine and overdue follow-up escalation monitors.
+- [x] 03-01: Configurable pipeline schema, stage transitions, loss reason modals, and drag-and-drop Kanban view.
+- [x] 03-02: Daily Action Queue UI, task assignment, due date scheduling, and status completion actions.
+- [x] 03-03: Business hours SLA calculation engine and overdue follow-up escalation monitors.
 
 ### Phase 4: Appointment Lifecycle & Reconciliation Engine
 **Goal**: Build the appointment scheduling and attendance tracking system with calendar integration adapters and an Unmatched Booking Review Queue to eliminate misattribution and double counting.
