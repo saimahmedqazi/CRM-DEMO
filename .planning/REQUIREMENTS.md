@@ -183,11 +183,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INTG-06 | Phase 6 | Completed |
 | INTG-07 | Phase 6 | Completed |
 | INTG-08 | Phase 6 | Completed |
-| AUTO-01 | Phase 7 | Pending |
-| AUTO-02 | Phase 7 | Pending |
-| AUTO-03 | Phase 7 | Pending |
-| AUTO-04 | Phase 7 | Pending |
-| AUTO-05 | Phase 7 | Pending |
+| AUTO-01 | Phase 7 | Completed |
+| AUTO-02 | Phase 7 | Completed |
+| AUTO-03 | Phase 7 | Completed |
+| AUTO-04 | Phase 7 | Completed |
+| AUTO-05 | Phase 7 | Completed |
 | AI-01 | Phase 8 | Pending |
 | AI-02 | Phase 8 | Pending |
 | AI-03 | Phase 8 | Pending |

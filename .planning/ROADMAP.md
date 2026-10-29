@@ -139,8 +139,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 07-01: Automation rule engine, trigger listeners, condition evaluator, and action execution dispatcher.
-- [ ] 07-02: Workflow builder UI, template presets, execution audit logs, and test run simulator.
+- [x] 07-01: Automation rule engine, trigger listeners, condition evaluator, and action execution dispatcher.
+- [x] 07-02: Workflow builder UI, template presets, execution audit logs, and test run simulator.
 
 ### Phase 8: AI Privacy Guard, Hardening, Hoffman Demo & Scale Verification
 **Goal**: Integrate server-side Groq AI with automated POPIA/health information redaction, enforce security hardening, seed the complete Hoffman Audiology demonstration workspace, and benchmark against 100,000 leads.
