@@ -27,12 +27,22 @@ export function KanbanBoard({ initialInquiries, orgSlug }: KanbanBoardProps) {
   const [selectedInquiry, setSelectedInquiry] = useState<any | null>(null);
   const [configModalOpen, setConfigModalOpen] = useState(false);
 
-  const reloadData = () => {
-    const res = leadService.getInquiries({ orgId: "hoffman-audiology", pageSize: 100 });
+  const reloadData = async () => {
+    try {
+      const res = await fetch("/api/v1/leads?orgId=org-hoffman-01&pageSize=100");
+      if (res.ok) {
+        const data = await res.json();
+        setInquiries(data.inquiries);
+        return;
+      }
+    } catch {
+      // Fallback
+    }
+    const res = leadService.getInquiries({ orgId: "org-hoffman-01", pageSize: 100 });
     setInquiries(res.inquiries);
   };
 
-  const handleAdvanceStage = (inquiryId: string, currentStatus: string) => {
+  const handleAdvanceStage = async (inquiryId: string, currentStatus: string) => {
     const stageFlow: Record<string, InquiryStatus> = {
       new: "contacted",
       contacted: "follow_up_needed",
@@ -42,7 +52,20 @@ export function KanbanBoard({ initialInquiries, orgSlug }: KanbanBoardProps) {
 
     const nextStatus = stageFlow[currentStatus];
     if (nextStatus) {
-      leadService.updateInquiryStatus("hoffman-audiology", inquiryId, nextStatus, undefined, "Dr. Kara Hoffman");
+      try {
+        await fetch("/api/v1/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "update_status",
+            inquiryId,
+            newStatus: nextStatus,
+            staffName: "Dr. Kara Hoffman",
+          }),
+        });
+      } catch {
+        leadService.updateInquiryStatus("org-hoffman-01", inquiryId, nextStatus, undefined, "Dr. Kara Hoffman");
+      }
       reloadData();
     }
   };

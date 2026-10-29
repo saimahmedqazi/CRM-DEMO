@@ -11,8 +11,18 @@ export default function ActionQueuePage() {
   const [queue, setQueue] = useState(taskService.getDailyActionQueue("hoffman-audiology"));
   const [createModalOpen, setCreateModalOpen] = useState(false);
 
-  const reloadTasks = () => {
-    setQueue(taskService.getDailyActionQueue("hoffman-audiology"));
+  const reloadTasks = async () => {
+    try {
+      const res = await fetch("/api/v1/tasks?orgId=org-hoffman-01");
+      if (res.ok) {
+        const data = await res.json();
+        setQueue(data);
+        return;
+      }
+    } catch {
+      // Fallback
+    }
+    setQueue(taskService.getDailyActionQueue("org-hoffman-01"));
   };
 
   useEffect(() => {

@@ -30,9 +30,31 @@ export default function LeadInboxPage() {
   const [mergeDialogOpen, setMergeDialogOpen] = useState(false);
   const [importDialogOpen, setImportDialogOpen] = useState(false);
 
-  const fetchLeads = () => {
+  const fetchLeads = async () => {
+    try {
+      const q = new URLSearchParams({
+        orgId: "org-hoffman-01",
+        page: "1",
+        pageSize: "50",
+      });
+      if (search) q.set("search", search);
+      if (source !== "all") q.set("source", source);
+      if (status !== "all") q.set("status", status);
+      if (locationId !== "all") q.set("locationId", locationId);
+
+      const response = await fetch(`/api/v1/leads?${q.toString()}`);
+      if (response.ok) {
+        const data = await response.json();
+        setInquiries(data.inquiries);
+        setTotalCount(data.totalCount);
+        return;
+      }
+    } catch {
+      // Fallback
+    }
+
     const res = leadService.getInquiries({
-      orgId: "hoffman-audiology",
+      orgId: "org-hoffman-01",
       search,
       source,
       status,

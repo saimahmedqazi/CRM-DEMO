@@ -30,6 +30,22 @@ export default function AnalyticsDashboardPage() {
   const fetchMetrics = async () => {
     setLoading(true);
     try {
+      const q = new URLSearchParams({
+        orgId,
+        locationId: filterLocation,
+        dateRange: filterRange,
+      });
+      const res = await fetch(`/api/v1/analytics?${q.toString()}`);
+      if (res.ok) {
+        const data = await res.json();
+        setMetrics(data);
+        setLoading(false);
+        return;
+      }
+    } catch {
+      // Fallback
+    }
+    try {
       const data = await analyticsService.getExecutiveDashboardMetrics(orgId, {
         locationId: filterLocation,
         dateRange: filterRange,

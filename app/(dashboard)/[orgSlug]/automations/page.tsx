@@ -91,6 +91,16 @@ export default function AutomationsPage() {
         </div>
       </div>
 
+      {/* Clinical Policy & Safety Disclosure */}
+      <div className="rounded-xl border border-blue-500/30 bg-blue-500/10 p-4 text-xs text-blue-200">
+        <div className="font-semibold text-white mb-1 flex items-center gap-1.5">
+          <span>Clinical Policy & Follow-up Configuration Notice</span>
+        </div>
+        <p className="text-slate-300 leading-relaxed">
+          In accordance with medical practice protocols, automation templates currently manage <strong>internal staff tasks</strong>, priority SLAs, and lead routing. Any outbound patient messaging (SMS, WhatsApp) or calendar alteration is configurable per workspace policy and requires clinical staff approval before transmission. No automated messages are dispatched without prior clinic configuration.
+        </p>
+      </div>
+
       {/* KPI Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg">

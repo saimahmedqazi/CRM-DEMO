@@ -1,11 +1,14 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { appointmentService } from '@/lib/services/appointment-service';
 import { leadService } from '@/lib/services/lead-service';
+import { persistentDemoStore } from '@/lib/db/persistent-demo-store';
 
 describe('Appointment Lifecycle & External Calendar Reconciliation', () => {
   const orgId = 'test-org-audiology';
 
   beforeEach(() => {
+    persistentDemoStore.resetToDefault();
+
     // Seed test contact
     leadService.createLead({
       organization_id: orgId,
@@ -116,7 +119,7 @@ describe('Appointment Lifecycle & External Calendar Reconciliation', () => {
       'create_new'
     );
 
-    expect(resolved.unmatched.resolution_status).toBe('created_new');
+    expect(resolved.unmatched?.resolution_status).toBe('created_new');
     expect(resolved.appointment).toBeDefined();
     expect(resolved.appointment?.title).toBe('Pediatric Hearing Screening');
   });

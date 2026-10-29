@@ -33,9 +33,17 @@ export function IntegrationCard({ integration, onOpenSimulator }: IntegrationCar
   const getStatusBadge = () => {
     switch (integration.status) {
       case "active":
-        return <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">Live Active</span>;
+        return (
+          <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-400 border border-emerald-500/20">
+            Functional (Local / Preview)
+          </span>
+        );
       case "sandbox_ready":
-        return <span className="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold text-indigo-400">Sandbox Ready</span>;
+        return (
+          <span className="rounded-full bg-amber-500/10 px-2.5 py-0.5 text-xs font-semibold text-amber-400 border border-amber-500/20">
+            Simulated (Sandbox Demo)
+          </span>
+        );
       case "disabled":
         return <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-xs font-semibold text-slate-400">Disabled</span>;
     }

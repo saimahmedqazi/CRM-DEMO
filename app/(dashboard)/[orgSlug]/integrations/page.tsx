@@ -56,7 +56,7 @@ const INTEGRATIONS: IntegrationInfo[] = [
     name: "Calendar Sync (Google / Outlook / Calendly)",
     provider: "calendar",
     description: "Bilateral calendar synchronization with phone/email reconciliation and ambiguous booking review queue.",
-    status: "active",
+    status: "sandbox_ready",
     capabilities: ["Idempotent Sync", "Zero Double-Counting", "Review Queue", "Multi-Calendar"],
     webhookPath: "/api/v1/webhooks/calendar",
   },
@@ -85,6 +85,17 @@ export default function IntegrationsPage() {
             Pluggable multi-channel ingestion adapters, HMAC webhook security, and credentials-free testing simulator.
           </p>
         </div>
+      </div>
+
+      {/* Demonstration Sandbox Notice */}
+      <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 text-xs text-amber-200">
+        <div className="font-semibold text-white mb-1 flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
+          <span>Sales Demo Safety Notice: Simulated Test Harness Active</span>
+        </div>
+        <p className="text-slate-300 leading-relaxed">
+          External third-party channels (Meta WhatsApp Cloud API, Meta Lead Ads, Telecom PBX, and Calendar Sync) are equipped with clean mock adapters and sandbox webhook simulators. In demo mode, no real-world phone calls, SMS charges, WhatsApp messages, or external calendar edits take place. Use the <strong>Webhook Sandbox Simulator</strong> below to test real-time inquiry ingestion.
+        </p>
       </div>
 
       {/* Tabs */}

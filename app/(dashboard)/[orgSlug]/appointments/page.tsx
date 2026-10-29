@@ -31,6 +31,18 @@ export default function AppointmentsPage() {
   const refreshData = async () => {
     setLoading(true);
     try {
+      const res = await fetch(`/api/v1/appointments?orgId=${orgId}`);
+      if (res.ok) {
+        const data = await res.json();
+        setAppointments(data.appointments);
+        setUnmatchedBookings(data.unmatchedBookings);
+        setLoading(false);
+        return;
+      }
+    } catch {
+      // Fallback
+    }
+    try {
       const appts = await appointmentService.listAppointments(orgId);
       const unmatched = await appointmentService.listUnmatchedBookings(orgId);
       setAppointments(appts);
@@ -45,7 +57,15 @@ export default function AppointmentsPage() {
   }, [orgSlug]);
 
   const handleCreateAppointment = async (dto: CreateAppointmentDTO) => {
-    await appointmentService.createAppointment(dto);
+    try {
+      await fetch("/api/v1/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "create", orgId, ...dto }),
+      });
+    } catch {
+      await appointmentService.createAppointment(dto);
+    }
     await refreshData();
   };
 
@@ -55,13 +75,29 @@ export default function AppointmentsPage() {
     revenueCents: number
   ) => {
     if (!outcomeAppointment) return;
-    await appointmentService.recordOutcome(
-      orgId,
-      outcomeAppointment.id,
-      outcome,
-      notes,
-      revenueCents
-    );
+    try {
+      await fetch("/api/v1/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "record_outcome",
+          orgId,
+          appointmentId: outcomeAppointment.id,
+          outcome,
+          outcomeNotes: notes,
+          revenueCents,
+        }),
+      });
+    } catch {
+      await appointmentService.recordOutcome(
+        orgId,
+        outcomeAppointment.id,
+        outcome,
+        notes,
+        revenueCents
+      );
+    }
+    setOutcomeAppointment(null);
     await refreshData();
   };
 
@@ -80,12 +116,26 @@ export default function AppointmentsPage() {
     action: "match_existing" | "create_new" | "ignore",
     targetContactId?: string
   ) => {
-    await appointmentService.resolveUnmatchedBooking(
-      orgId,
-      unmatchedId,
-      action,
-      targetContactId
-    );
+    try {
+      await fetch("/api/v1/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "resolve_unmatched",
+          orgId,
+          unmatchedId,
+          resolutionAction: action === "create_new" ? "create_new_contact" : action,
+          targetContactId,
+        }),
+      });
+    } catch {
+      await appointmentService.resolveUnmatchedBooking(
+        orgId,
+        unmatchedId,
+        action === "create_new" ? "create_new_contact" : action,
+        targetContactId
+      );
+    }
     await refreshData();
   };
 

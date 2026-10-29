@@ -34,7 +34,7 @@ interface LeadDetailDrawerProps {
 
 export function LeadDetailDrawer({ inquiry, orgSlug, onClose, onUpdated }: LeadDetailDrawerProps) {
   const [noteText, setNoteText] = useState("");
-  const [status, setStatus] = useState<InquiryStatus>(inquiry?.status || "new");
+  const [status, setStatus] = useState<InquiryStatus>((inquiry?.status as InquiryStatus) || "new");
   const [lossReason, setLossReason] = useState("");
   const [showLossModal, setShowLossModal] = useState(false);
 
