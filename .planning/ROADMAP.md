@@ -104,8 +104,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 05-01: High-performance PostgreSQL aggregation queries and analytics service layer with date/location/source filtering.
-- [ ] 05-02: Interactive analytics dashboard UI with KPI metric cards, conversion funnel, source attribution, and drill-down modals.
+- [x] 05-01: High-performance PostgreSQL aggregation queries and analytics service layer with date/location/source filtering.
+- [x] 05-02: Interactive analytics dashboard UI with KPI metric cards, conversion funnel, source attribution, and drill-down modals.
 
 ### Phase 6: Reusable Integration Framework & Webhooks
 **Goal**: Provide a pluggable integration engine featuring public website forms, an authenticated ingest REST API, HMAC webhook handling, and adapters for WhatsApp, Meta Ads, Email, and Phone systems.

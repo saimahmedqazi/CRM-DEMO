@@ -3,10 +3,10 @@ gsd_state_version: '1.0'
 status: ready_to_plan
 progress:
   total_phases: 8
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 21
-  completed_plans: 11
-  percent: 52
+  completed_plans: 13
+  percent: 62
 ---
 
 # Project State
@@ -16,23 +16,23 @@ progress:
 See: `.planning/PROJECT.md` (updated 2026-10-29)
 
 **Core value:** Capture every inbound customer inquiry across all channels, prevent leads from falling through the cracks with deterministic follow-up workflows, and deliver auditable attribution on which inquiries convert into completed appointments.
-**Current focus:** Phase 5 — Conversion & Source Attribution Analytics
+**Current focus:** Phase 6 — Reusable Integration Framework & Webhooks
 
 ## Current Position
 
-Phase: 5 of 8 (Conversion & Source Attribution Analytics)
-Plan: 0 of 2 in current phase
+Phase: 6 of 8 (Reusable Integration Framework & Webhooks)
+Plan: 0 of 3 in current phase
 Status: Ready to plan
-Last activity: 2026-10-29 — Completed Phase 4 (Appointment Lifecycle & Reconciliation Engine) with verified clinical outcomes, external calendar reconciliation, and Unmatched Booking Review Queue.
+Last activity: 2026-10-29 — Completed Phase 5 (Conversion & Source Attribution Analytics) with conversion funnel, source ROI table, loss diagnosis, and drill-down drawer.
 
-Progress: [█████░░░░░] 52%
+Progress: [██████░░░░] 62%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
-- Average duration: 15.5 min
-- Total execution time: 2.9 hours
+- Total plans completed: 13
+- Average duration: 15.3 min
+- Total execution time: 3.4 hours
 
 **By Phase:**
 
@@ -42,7 +42,7 @@ Progress: [█████░░░░░] 52%
 | 2. Contacts, Inquiries & Unified Lead Inbox | 3/3 | 53 min | 17.6 min |
 | 3. Configurable Pipeline, Follow-up Queue & Task SLAs | 3/3 | 42 min | 14 min |
 | 4. Appointment Lifecycle & Reconciliation Engine | 2/2 | 29 min | 14.5 min |
-| 5. Conversion & Source Attribution Analytics | 0/2 | - | - |
+| 5. Conversion & Source Attribution Analytics | 2/2 | 30 min | 15 min |
 | 6. Reusable Integration Framework & Webhooks | 0/3 | - | - |
 | 7. Workflow Automation Engine | 0/2 | - | - |
 | 8. AI Privacy Guard, Hardening, Hoffman Demo & Scale Verification | 0/3 | - | - |
