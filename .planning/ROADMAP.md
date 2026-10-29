@@ -10,7 +10,7 @@ This roadmap defines the end-to-end engineering lifecycle for delivering a comme
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Foundation & Multi-Tenant Core Architecture** - Next.js 15, PostgreSQL RLS, Supabase Auth SSR, workspace creation, multi-location support, and cross-tenant security verification
+- [x] **Phase 1: Foundation & Multi-Tenant Core Architecture** - Next.js 15, PostgreSQL RLS, Supabase Auth SSR, workspace creation, multi-location support, and cross-tenant security verification
 - [ ] **Phase 2: Contacts, Inquiries & Unified Lead Inbox** - Unified data model, E.164/email deduplication, TanStack Table Lead Inbox, lead merging, and CSV import/export
 - [ ] **Phase 3: Configurable Pipeline, Follow-up Queue & Task SLAs** - Drag-and-drop Kanban, uncertainty-aware stage transitions, loss reasons, daily action queue, and SAST business hours scheduling
 - [ ] **Phase 4: Appointment Lifecycle & Reconciliation Engine** - Appointment scheduling, attendance outcomes, calendar adapters (Google/Outlook), and unmatched booking review queue
@@ -34,9 +34,9 @@ This roadmap defines the end-to-end engineering lifecycle for delivering a comme
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Next.js 15 App Router scaffold, Tailwind CSS + shadcn/ui design tokens, and environment validation.
-- [ ] 01-02: PostgreSQL database schema migrations with RLS policies, Supabase Auth SSR session handling, and RBAC middleware.
-- [ ] 01-03: Workspace & location settings UI, industry template loader, and automated cross-tenant security test suite.
+- [x] 01-01: Next.js 15 App Router scaffold, Tailwind CSS + shadcn/ui design tokens, and environment validation.
+- [x] 01-02: PostgreSQL database schema migrations with RLS policies, Supabase Auth SSR session handling, and RBAC middleware.
+- [x] 01-03: Workspace & location settings UI, industry template loader, and automated cross-tenant security test suite.
 
 ### Phase 2: Contacts, Inquiries & Unified Lead Inbox
 **Goal**: Build the unified lead capture and data model separating long-lived Contacts from event Inquiries, complete with phone/email deduplication, TanStack Table Lead Inbox, lead merging, and CSV import/export.
@@ -168,7 +168,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Multi-Tenant Core Architecture | 0/3 | Not started | - |
+| 1. Foundation & Multi-Tenant Core Architecture | 3/3 | Completed | 2026-10-29 |
 | 2. Contacts, Inquiries & Unified Lead Inbox | 0/3 | Not started | - |
 | 3. Configurable Pipeline, Follow-up Queue & Task SLAs | 0/3 | Not started | - |
 | 4. Appointment Lifecycle & Reconciliation Engine | 0/2 | Not started | - |

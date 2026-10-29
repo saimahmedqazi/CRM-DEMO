@@ -9,18 +9,18 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Authentication & Multi-Tenancy (AUTH)
 
-- [ ] **AUTH-01**: User can create an account, log in securely with email and password, and maintain a persistent server-validated session across page refreshes.
-- [ ] **AUTH-02**: User can create a new organization/workspace or join an existing organization via an invitation token.
-- [ ] **AUTH-03**: Administrator can assign and modify user roles within a workspace (Owner, Administrator, Manager, Agent, Read-only).
-- [ ] **AUTH-04**: Database strictly enforces tenant separation on all tenant-owned records using PostgreSQL Row Level Security (RLS) based on the authenticated session's organization.
-- [ ] **AUTH-05**: Automated security tests prove a user in Organization A cannot read, update, delete, or export records belonging to Organization B via direct queries or manipulated identifiers.
+- [x] **AUTH-01**: User can create an account, log in securely with email and password, and maintain a persistent server-validated session across page refreshes.
+- [x] **AUTH-02**: User can create a new organization/workspace or join an existing organization via an invitation token.
+- [x] **AUTH-03**: Administrator can assign and modify user roles within a workspace (Owner, Administrator, Manager, Agent, Read-only).
+- [x] **AUTH-04**: Database strictly enforces tenant separation on all tenant-owned records using PostgreSQL Row Level Security (RLS) based on the authenticated session's organization.
+- [x] **AUTH-05**: Automated security tests prove a user in Organization A cannot read, update, delete, or export records belonging to Organization B via direct queries or manipulated identifiers.
 
 ### Workspace Configuration & Locations (WORK)
 
-- [ ] **WORK-01**: Administrator can configure workspace general profile (name, logo, timezone, currency, and white-label theme colors).
-- [ ] **WORK-02**: Administrator can manage multiple business locations within a single workspace (e.g., Hoffman Audiology's Durban and Ballito clinics).
-- [ ] **WORK-03**: Administrator can define business operating hours per location to govern SLA calculation and follow-up deadlines.
-- [ ] **WORK-04**: Administrator can select and apply pre-configured industry templates (Audiology, Dental, Real Estate, Professional Services) that seed specialized fields, tags, stages, and loss reasons.
+- [x] **WORK-01**: Administrator can configure workspace general profile (name, logo, timezone, currency, and white-label theme colors).
+- [x] **WORK-02**: Administrator can manage multiple business locations within a single workspace (e.g., Hoffman Audiology's Durban and Ballito clinics).
+- [x] **WORK-03**: Administrator can define business operating hours per location to govern SLA calculation and follow-up deadlines.
+- [x] **WORK-04**: Administrator can select and apply pre-configured industry templates (Audiology, Dental, Real Estate, Professional Services) that seed specialized fields, tags, stages, and loss reasons.
 
 ### Contacts, Inquiries & Lead Inbox (LEAD)
 
@@ -136,15 +136,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
-| AUTH-04 | Phase 1 | Pending |
-| AUTH-05 | Phase 1 | Pending |
-| WORK-01 | Phase 1 | Pending |
-| WORK-02 | Phase 1 | Pending |
-| WORK-03 | Phase 1 | Pending |
-| WORK-04 | Phase 1 | Pending |
+| AUTH-01 | Phase 1 | Completed |
+| AUTH-02 | Phase 1 | Completed |
+| AUTH-03 | Phase 1 | Completed |
+| AUTH-04 | Phase 1 | Completed |
+| AUTH-05 | Phase 1 | Completed |
+| WORK-01 | Phase 1 | Completed |
+| WORK-02 | Phase 1 | Completed |
+| WORK-03 | Phase 1 | Completed |
+| WORK-04 | Phase 1 | Completed |
 | LEAD-01 | Phase 2 | Pending |
 | LEAD-02 | Phase 2 | Pending |
 | LEAD-03 | Phase 2 | Pending |
