@@ -11,7 +11,7 @@ This roadmap defines the end-to-end engineering lifecycle for delivering a comme
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Foundation & Multi-Tenant Core Architecture** - Next.js 15, PostgreSQL RLS, Supabase Auth SSR, workspace creation, multi-location support, and cross-tenant security verification
-- [ ] **Phase 2: Contacts, Inquiries & Unified Lead Inbox** - Unified data model, E.164/email deduplication, TanStack Table Lead Inbox, lead merging, and CSV import/export
+- [x] **Phase 2: Contacts, Inquiries & Unified Lead Inbox** - Unified data model, E.164/email deduplication, TanStack Table Lead Inbox, lead merging, and CSV import/export
 - [ ] **Phase 3: Configurable Pipeline, Follow-up Queue & Task SLAs** - Drag-and-drop Kanban, uncertainty-aware stage transitions, loss reasons, daily action queue, and SAST business hours scheduling
 - [ ] **Phase 4: Appointment Lifecycle & Reconciliation Engine** - Appointment scheduling, attendance outcomes, calendar adapters (Google/Outlook), and unmatched booking review queue
 - [ ] **Phase 5: Conversion & Source Attribution Analytics** - Executive KPI metrics, multi-channel attribution, drop-off funnel, loss distribution, and underlying record drill-downs
@@ -52,9 +52,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: Contacts and Inquiries schema, E.164 normalization, deduplication engine, and lead creation actions.
-- [ ] 02-02: High-performance TanStack Table Lead Inbox with server-side multi-filter, search, and detail drawer.
-- [ ] 02-03: Lead merge comparison wizard, CSV import/export with schema mapping, and contact activity timeline.
+- [x] 02-01: Contacts and Inquiries schema, E.164 normalization, deduplication engine, and lead creation actions.
+- [x] 02-02: High-performance TanStack Table Lead Inbox with server-side multi-filter, search, and detail drawer.
+- [x] 02-03: Lead merge comparison wizard, CSV import/export with schema mapping, and contact activity timeline.
 
 ### Phase 3: Configurable Pipeline, Follow-up Queue & Task SLAs
 **Goal**: Implement the visual Kanban pipeline with configurable stages and loss reasons, alongside the Daily Action Queue governed by location business hours and SLA escalation.
@@ -169,7 +169,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Multi-Tenant Core Architecture | 3/3 | Completed | 2026-10-29 |
-| 2. Contacts, Inquiries & Unified Lead Inbox | 0/3 | Not started | - |
+| 2. Contacts, Inquiries & Unified Lead Inbox | 3/3 | Completed | 2026-10-29 |
 | 3. Configurable Pipeline, Follow-up Queue & Task SLAs | 0/3 | Not started | - |
 | 4. Appointment Lifecycle & Reconciliation Engine | 0/2 | Not started | - |
 | 5. Conversion & Source Attribution Analytics | 0/2 | Not started | - |

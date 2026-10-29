@@ -24,15 +24,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Contacts, Inquiries & Lead Inbox (LEAD)
 
-- [ ] **LEAD-01**: System maintains distinct models for Contacts (the individual person) and Inquiries (a specific event/interest request) to preserve historical data across multiple interactions.
-- [ ] **LEAD-02**: System automatically normalizes contact phone numbers (E.164) and email addresses upon ingestion to detect duplicates within the workspace.
-- [ ] **LEAD-03**: User can view a unified Lead Inbox table displaying inquiry source, contact details, assigned owner, status, priority, creation date, last interaction, and next scheduled action.
-- [ ] **LEAD-04**: User can perform instant server-side text search across contacts and inquiries and apply multi-criteria filters (source, status, assignee, date range, location, tags).
-- [ ] **LEAD-05**: User can manually create a new lead with contact information, inquiry source, tags, custom fields, and an initial follow-up task.
-- [ ] **LEAD-06**: User can merge duplicate leads with a side-by-side comparison modal while preserving all historical notes, appointments, and interaction logs.
-- [ ] **LEAD-07**: User can import leads via CSV with column mapping, data validation, duplicate resolution preview, and downloadable error reports.
-- [ ] **LEAD-08**: User can export filtered lead lists to CSV with verified tenant-bounded authorization.
-- [ ] **LEAD-09**: User can open a Contact Record showing an immutable, consolidated timeline of all calls, emails, notes, appointments, status changes, and staff audit logs.
+- [x] **LEAD-01**: System maintains distinct models for Contacts (the individual person) and Inquiries (a specific event/interest request) to preserve historical data across multiple interactions.
+- [x] **LEAD-02**: System automatically normalizes contact phone numbers (E.164) and email addresses upon ingestion to detect duplicates within the workspace.
+- [x] **LEAD-03**: User can view a unified Lead Inbox table displaying inquiry source, contact details, assigned owner, status, priority, creation date, last interaction, and next scheduled action.
+- [x] **LEAD-04**: User can perform instant server-side text search across contacts and inquiries and apply multi-criteria filters (source, status, assignee, date range, location, tags).
+- [x] **LEAD-05**: User can manually create a new lead with contact information, inquiry source, tags, custom fields, and an initial follow-up task.
+- [x] **LEAD-06**: User can merge duplicate leads with a side-by-side comparison modal while preserving all historical notes, appointments, and interaction logs.
+- [x] **LEAD-07**: User can import leads via CSV with column mapping, data validation, duplicate resolution preview, and downloadable error reports.
+- [x] **LEAD-08**: User can export filtered lead lists to CSV with verified tenant-bounded authorization.
+- [x] **LEAD-09**: User can open a Contact Record showing an immutable, consolidated timeline of all calls, emails, notes, appointments, status changes, and staff audit logs.
 
 ### Configurable Pipeline (PIPE)
 
@@ -145,15 +145,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | WORK-02 | Phase 1 | Completed |
 | WORK-03 | Phase 1 | Completed |
 | WORK-04 | Phase 1 | Completed |
-| LEAD-01 | Phase 2 | Pending |
-| LEAD-02 | Phase 2 | Pending |
-| LEAD-03 | Phase 2 | Pending |
-| LEAD-04 | Phase 2 | Pending |
-| LEAD-05 | Phase 2 | Pending |
-| LEAD-06 | Phase 2 | Pending |
-| LEAD-07 | Phase 2 | Pending |
-| LEAD-08 | Phase 2 | Pending |
-| LEAD-09 | Phase 2 | Pending |
+| LEAD-01 | Phase 2 | Completed |
+| LEAD-02 | Phase 2 | Completed |
+| LEAD-03 | Phase 2 | Completed |
+| LEAD-04 | Phase 2 | Completed |
+| LEAD-05 | Phase 2 | Completed |
+| LEAD-06 | Phase 2 | Completed |
+| LEAD-07 | Phase 2 | Completed |
+| LEAD-08 | Phase 2 | Completed |
+| LEAD-09 | Phase 2 | Completed |
 | PIPE-01 | Phase 3 | Pending |
 | PIPE-02 | Phase 3 | Pending |
 | PIPE-03 | Phase 3 | Pending |

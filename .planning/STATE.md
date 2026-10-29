@@ -3,10 +3,10 @@ gsd_state_version: '1.0'
 status: ready_to_plan
 progress:
   total_phases: 8
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 21
-  completed_plans: 3
-  percent: 14
+  completed_plans: 6
+  percent: 29
 ---
 
 # Project State
@@ -16,30 +16,30 @@ progress:
 See: `.planning/PROJECT.md` (updated 2026-10-29)
 
 **Core value:** Capture every inbound customer inquiry across all channels, prevent leads from falling through the cracks with deterministic follow-up workflows, and deliver auditable attribution on which inquiries convert into completed appointments.
-**Current focus:** Phase 2 — Contacts, Inquiries & Unified Lead Inbox
+**Current focus:** Phase 3 — Configurable Pipeline, Follow-up Queue & Task SLAs
 
 ## Current Position
 
-Phase: 2 of 8 (Contacts, Inquiries & Unified Lead Inbox)
+Phase: 3 of 8 (Configurable Pipeline, Follow-up Queue & Task SLAs)
 Plan: 0 of 3 in current phase
 Status: Ready to plan
-Last activity: 2026-10-29 — Completed Phase 1 (Foundation & Multi-Tenant Core Architecture) with 100% verified cross-tenant RLS tests.
+Last activity: 2026-10-29 — Completed Phase 2 (Contacts, Inquiries & Unified Lead Inbox) with E.164 deduplication, TanStack Table inbox, merge wizard, and CSV import/export.
 
-Progress: [█░░░░░░░░░] 14%
+Progress: [██░░░░░░░░] 29%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 15 min
-- Total execution time: 0.75 hours
+- Total plans completed: 6
+- Average duration: 17 min
+- Total execution time: 1.7 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1. Foundation & Multi-Tenant Core Architecture | 3/3 | 45 min | 15 min |
-| 2. Contacts, Inquiries & Unified Lead Inbox | 0/3 | - | - |
+| 2. Contacts, Inquiries & Unified Lead Inbox | 3/3 | 53 min | 17.6 min |
 | 3. Configurable Pipeline, Follow-up Queue & Task SLAs | 0/3 | - | - |
 | 4. Appointment Lifecycle & Reconciliation Engine | 0/2 | - | - |
 | 5. Conversion & Source Attribution Analytics | 0/2 | - | - |
@@ -48,8 +48,8 @@ Progress: [█░░░░░░░░░] 14%
 | 8. AI Privacy Guard, Hardening, Hoffman Demo & Scale Verification | 0/3 | - | - |
 
 **Recent Trend:**
-- Last 3 plans: 12 min, 15 min, 18 min
-- Trend: Stable & High Velocity
+- Last 3 plans: 15 min, 18 min, 20 min
+- Trend: Consistent & High Velocity
 
 *Updated after each plan completion*
 
@@ -63,7 +63,10 @@ Recent decisions affecting current work:
 - [Phase 1]: Next.js 15 App Router + React 19 + TypeScript strict mode verified with production build passing.
 - [Phase 1]: PostgreSQL Row Level Security (RLS) forced at database level and verified with cross-tenant penetration test suite.
 - [Phase 1]: Hoffman Audiology Inc. configured with Durban (Musgrave) and Ballito (The Well) clinics with SAST business operating hours.
-- [Phase 1]: Industry templates built for Audiology, Dental, Real Estate, Professional Services.
+- [Phase 2]: Decoupled Contacts from Inquiries to eliminate data overwrite when patients submit multiple inquiries over time.
+- [Phase 2]: E.164 phone normalization with South African +27 standard handles all local formats.
+- [Phase 2]: Lead merging reparents all historical inquiries, activities, and tasks with an immutable audit log.
+- [Phase 2]: Mandatory documented loss reason required when marking leads as Lost.
 
 ### Pending Todos
 
@@ -71,7 +74,7 @@ None.
 
 ### Blockers/Concerns
 
-None. Ready for Phase 2 execution.
+None. Ready for Phase 3 execution.
 
 ## Deferred Items
 
@@ -84,6 +87,6 @@ None. Ready for Phase 2 execution.
 
 ## Session Continuity
 
-Last session: 2026-10-29 13:48
-Stopped at: Phase 1 completed and verified. Advancing directly to Phase 2 (Contacts, Inquiries & Unified Lead Inbox).
+Last session: 2026-10-29 14:02
+Stopped at: Phase 2 completed and verified. Advancing directly to Phase 3 (Configurable Pipeline, Follow-up Queue & Task SLAs).
 Resume file: None
