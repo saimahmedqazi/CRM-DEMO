@@ -1,6 +1,7 @@
 "use client";
 
 import { Phone, Globe, MessageSquare, Facebook, Mail, Clock, AlertTriangle, ChevronRight, User } from "lucide-react";
+import { isBallito } from "@/lib/utils";
 
 interface KanbanCardProps {
   inquiry: {
@@ -56,12 +57,12 @@ export function KanbanCard({ inquiry, onMoveStage, onClick }: KanbanCardProps) {
           <span>{inquiry.source.replace("_", " ")}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          {inquiry.location_id === "loc-ballito" ? (
-            <span className="text-[10px] font-semibold text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/40 px-1.5 py-0.5 rounded">
+          {isBallito(inquiry.location_id) ? (
+            <span className="text-[10px] font-semibold text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/40 px-1.5 py-0.5 rounded border border-teal-200 dark:border-teal-800">
               Ballito
             </span>
           ) : (
-            <span className="text-[10px] font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/40 px-1.5 py-0.5 rounded">
+            <span className="text-[10px] font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/40 px-1.5 py-0.5 rounded border border-blue-200 dark:border-blue-800">
               Durban
             </span>
           )}

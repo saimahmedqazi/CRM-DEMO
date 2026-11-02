@@ -25,15 +25,15 @@ export function ConversionFunnel({ stages, onSelectStage }: ConversionFunnelProp
   };
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl">
+    <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h3 className="text-base font-bold text-white">Inquiry-to-Outcome Funnel</h3>
-          <p className="text-xs text-slate-400">
+          <h3 className="text-base font-bold text-foreground">Inquiry-to-Outcome Funnel</h3>
+          <p className="text-xs text-muted-foreground">
             Progression from initial inquiry to confirmed attended appointment
           </p>
         </div>
-        <span className="text-xs text-indigo-400">Click any stage to drill down</span>
+        <span className="text-xs text-primary font-medium">Click any stage to drill down</span>
       </div>
 
       <div className="space-y-4">
@@ -43,21 +43,21 @@ export function ConversionFunnel({ stages, onSelectStage }: ConversionFunnelProp
             <div
               key={stage.id}
               onClick={() => onSelectStage(stage.id)}
-              className="group cursor-pointer rounded-xl border border-transparent p-2 transition hover:border-slate-700 hover:bg-slate-800/40"
+              className="group cursor-pointer rounded-xl border border-transparent p-2 transition hover:border-border hover:bg-muted/40"
             >
               <div className="mb-1.5 flex items-center justify-between text-xs">
-                <span className="font-semibold text-slate-200 group-hover:text-white">
+                <span className="font-semibold text-foreground group-hover:text-primary">
                   {stage.label}
                 </span>
                 <div className="flex items-center gap-3">
-                  <span className="font-bold text-white">{stage.count} leads</span>
-                  <span className="rounded bg-slate-800 px-2 py-0.5 text-[11px] font-semibold text-indigo-300">
+                  <span className="font-bold text-foreground">{stage.count} leads</span>
+                  <span className="rounded bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
                     {stage.conversionFromTop}% of total
                   </span>
                 </div>
               </div>
 
-              <div className="h-6 w-full overflow-hidden rounded-lg bg-slate-800/80 p-0.5">
+              <div className="h-6 w-full overflow-hidden rounded-lg bg-muted p-0.5">
                 <div
                   className={`h-full rounded-md bg-gradient-to-r ${getStageColor(
                     idx
@@ -67,7 +67,7 @@ export function ConversionFunnel({ stages, onSelectStage }: ConversionFunnelProp
               </div>
 
               {idx > 0 && (
-                <div className="mt-1 text-[11px] text-slate-500">
+                <div className="mt-1 text-[11px] text-muted-foreground">
                   ↳ {stage.conversionFromPrevious}% progressed from previous step
                 </div>
               )}

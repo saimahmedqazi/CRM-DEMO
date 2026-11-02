@@ -86,16 +86,16 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-xl rounded-xl border border-slate-700 bg-slate-900 p-6 shadow-2xl">
-        <div className="mb-5 flex items-center justify-between border-b border-slate-800 pb-3">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
+      <div className="w-full max-w-xl rounded-xl border border-border bg-card p-6 shadow-2xl">
+        <div className="mb-5 flex items-center justify-between border-b border-border pb-3">
           <div>
-            <h2 className="text-lg font-bold text-white">Create Automation Workflow</h2>
-            <p className="text-xs text-slate-400">Configure deterministic practice trigger and actions</p>
+            <h2 className="text-lg font-bold text-foreground">Create Automation Workflow</h2>
+            <p className="text-xs text-muted-foreground">Configure deterministic practice trigger and actions</p>
           </div>
           <button
             onClick={onClose}
-            className="rounded p-1 text-slate-400 hover:bg-slate-800 hover:text-white"
+            className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
           >
             ✕
           </button>
@@ -103,7 +103,7 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
               Workflow Name <span className="text-rose-500">*</span>
             </label>
             <input
@@ -112,12 +112,12 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Ballito Web Form Follow-up SLA"
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
               Description (Optional)
             </label>
             <input
@@ -125,20 +125,20 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="e.g. Automatically creates urgent follow-up task for Ballito inquiries"
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
             />
           </div>
 
           {/* Trigger */}
-          <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/5 p-4">
-            <span className="rounded bg-indigo-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-indigo-300">
+          <div className="rounded-xl border border-blue-200 dark:border-blue-900 bg-blue-50/50 dark:bg-blue-950/20 p-4">
+            <span className="rounded bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
               Step 1: When Event Occurs (Trigger)
             </span>
             <div className="mt-2">
               <select
                 value={triggerType}
                 onChange={(e) => setTriggerType(e.target.value as TriggerType)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
               >
                 <option value="inquiry_created">New Inquiry Captured (Web, WhatsApp, Ads, Phone)</option>
                 <option value="call_missed">Missed PBX Phone Call</option>
@@ -149,15 +149,15 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
           </div>
 
           {/* Condition */}
-          <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4">
-            <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-300">
+          <div className="rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50/50 dark:bg-amber-950/20 p-4">
+            <span className="rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
               Step 2: If Conditions Match
             </span>
             <div className="mt-2 grid grid-cols-3 gap-2">
               <select
                 value={conditionField}
                 onChange={(e) => setConditionField(e.target.value)}
-                className="rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs text-foreground focus:border-primary focus:outline-none"
               >
                 <option value="source">Source Channel</option>
                 <option value="location">Clinic Location</option>
@@ -167,7 +167,7 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
               <select
                 value={conditionOperator}
                 onChange={(e) => setConditionOperator(e.target.value as any)}
-                className="rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs text-foreground focus:border-primary focus:outline-none"
               >
                 <option value="equals">Equals</option>
                 <option value="contains">Contains</option>
@@ -178,14 +178,14 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
                 value={conditionValue}
                 onChange={(e) => setConditionValue(e.target.value)}
                 placeholder="whatsapp / durban / etc."
-                className="rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs text-foreground focus:border-primary focus:outline-none"
               />
             </div>
           </div>
 
           {/* Action */}
-          <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4">
-            <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-300">
+          <div className="rounded-xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50/50 dark:bg-emerald-950/20 p-4">
+            <span className="rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
               Step 3: Execute Action
             </span>
 
@@ -193,7 +193,7 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
               <select
                 value={actionType}
                 onChange={(e) => setActionType(e.target.value as any)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
               >
                 <option value="create_task">Create Follow-up Task in Action Queue</option>
                 <option value="add_tag">Add Contact Tag</option>
@@ -202,20 +202,20 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
               {actionType === "create_task" ? (
                 <div className="grid grid-cols-2 gap-3">
                   <div className="col-span-2">
-                    <label className="text-[11px] text-slate-400">Task Title</label>
+                    <label className="text-[11px] text-muted-foreground">Task Title</label>
                     <input
                       type="text"
                       value={taskTitle}
                       onChange={(e) => setTaskTitle(e.target.value)}
-                      className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white"
+                      className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs text-foreground"
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400">Priority</label>
+                    <label className="text-[11px] text-muted-foreground">Priority</label>
                     <select
                       value={priority}
                       onChange={(e) => setPriority(e.target.value as any)}
-                      className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white"
+                      className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs text-foreground"
                     >
                       <option value="urgent">Urgent (Red)</option>
                       <option value="high">High (Amber)</option>
@@ -223,41 +223,41 @@ export function RuleBuilderModal({ isOpen, onClose, onSubmit }: RuleBuilderModal
                     </select>
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400">Due In (Minutes)</label>
+                    <label className="text-[11px] text-muted-foreground">Due In (Minutes)</label>
                     <input
                       type="number"
                       value={dueMinutes}
                       onChange={(e) => setDueMinutes(e.target.value)}
-                      className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white"
+                      className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs text-foreground"
                     />
                   </div>
                 </div>
               ) : (
                 <div>
-                  <label className="text-[11px] text-slate-400">Tag to Add</label>
+                  <label className="text-[11px] text-muted-foreground">Tag to Add</label>
                   <input
                     type="text"
                     value={tag}
                     onChange={(e) => setTag(e.target.value)}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white"
+                    className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs text-foreground"
                   />
                 </div>
               )}
             </div>
           </div>
 
-          <div className="mt-6 flex justify-end gap-3 border-t border-slate-800 pt-4">
+          <div className="mt-6 flex justify-end gap-3 border-t border-border pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800"
+              className="rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-muted"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading || !name.trim()}
-              className="rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white hover:bg-indigo-500 disabled:opacity-50"
+              className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
             >
               {loading ? "Creating..." : "Save Workflow"}
             </button>

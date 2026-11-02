@@ -1,4 +1,5 @@
 import { normalizeEmail, normalizePhone } from '@/lib/deduplication/normalizer';
+import { matchesLocationFilter } from '@/lib/utils';
 import { leadService } from './lead-service';
 import { taskService } from './task-service';
 import {
@@ -75,7 +76,7 @@ class AppointmentService {
       .filter((a) => {
         if (normalizeOrgId(a.organization_id) !== targetOrg) return false;
         if (filters?.status && a.status !== filters.status) return false;
-        if (filters?.locationId && a.location_id !== filters.locationId) return false;
+        if (filters?.locationId && !matchesLocationFilter(a.location_id, filters.locationId)) return false;
         if (filters?.startDate && a.start_time < filters.startDate) return false;
         if (filters?.endDate && a.start_time > filters.endDate) return false;
         return true;

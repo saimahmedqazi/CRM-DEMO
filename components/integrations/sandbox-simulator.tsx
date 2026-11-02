@@ -174,17 +174,17 @@ export function SandboxSimulator({ initialProvider }: { initialProvider?: string
   };
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-5 shadow-2xl backdrop-blur-md">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-800 pb-4">
+    <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <h3 className="text-base font-bold text-white">Simulated Integration Sandbox</h3>
-            <span className="rounded bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-semibold text-amber-300 uppercase tracking-wider">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <h3 className="text-base font-bold text-foreground">Simulated Integration Sandbox</h3>
+            <span className="rounded bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
               Simulated Demo Mode
             </span>
           </div>
-          <p className="mt-0.5 text-xs text-slate-400">
+          <p className="mt-0.5 text-xs text-muted-foreground">
             Simulate incoming patient inquiries from WhatsApp, Meta Ads, and Telephony PBX with zero live credentials or real phone charges.
           </p>
         </div>
@@ -192,7 +192,7 @@ export function SandboxSimulator({ initialProvider }: { initialProvider?: string
         <button
           onClick={handleDispatch}
           disabled={isDispatching}
-          className="flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-emerald-600/30 hover:bg-emerald-500 disabled:opacity-50 transition"
+          className="flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-emerald-700 disabled:opacity-50 transition"
         >
           {isDispatching ? (
             <span>Simulating Webhook...</span>
@@ -215,8 +215,8 @@ export function SandboxSimulator({ initialProvider }: { initialProvider?: string
             onClick={() => handleSelectPreset(key)}
             className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition ${
               selectedKey === key
-                ? "border-emerald-500 bg-emerald-500/10 text-emerald-300 font-semibold"
-                : "border-slate-800 bg-slate-800/60 text-slate-400 hover:border-slate-700 hover:text-slate-200"
+                ? "border-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-semibold"
+                : "border-input bg-background text-muted-foreground hover:bg-muted hover:text-foreground"
             }`}
           >
             {f.label}
@@ -227,30 +227,30 @@ export function SandboxSimulator({ initialProvider }: { initialProvider?: string
       {/* Payload Editor & Response Log */}
       <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div>
-          <div className="flex items-center justify-between text-xs text-slate-400 mb-1.5">
-            <span className="font-semibold text-slate-300">Target Webhook Endpoint:</span>
-            <code className="text-emerald-400 font-mono text-[11px]">{FIXTURES[selectedKey].path}</code>
+          <div className="flex items-center justify-between text-xs text-muted-foreground mb-1.5">
+            <span className="font-semibold text-foreground">Target Webhook Endpoint:</span>
+            <code className="text-emerald-600 dark:text-emerald-400 font-mono text-[11px]">{FIXTURES[selectedKey].path}</code>
           </div>
           <textarea
             value={jsonText}
             onChange={(e) => setJsonText(e.target.value)}
             rows={12}
-            className="w-full rounded-lg border border-slate-800 bg-slate-950 p-3 font-mono text-xs text-slate-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="w-full rounded-lg border border-input bg-muted/20 p-3 font-mono text-xs text-foreground focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
           />
         </div>
 
         <div>
-          <div className="text-xs font-semibold text-slate-300 mb-1.5">
+          <div className="text-xs font-semibold text-foreground mb-1.5">
             Real-time Ingestion Response:
           </div>
-          <div className="h-[248px] overflow-y-auto rounded-lg border border-slate-800 bg-slate-950 p-3 font-mono text-xs">
+          <div className="h-[248px] overflow-y-auto rounded-lg border border-border bg-muted/20 p-3 font-mono text-xs">
             {responseLog ? (
-              <pre className="text-slate-200 whitespace-pre-wrap">
+              <pre className="text-foreground whitespace-pre-wrap">
                 {JSON.stringify(responseLog, null, 2)}
               </pre>
             ) : (
-              <div className="flex h-full flex-col items-center justify-center text-center text-slate-500">
-                <svg className="mb-2 h-8 w-8 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="flex h-full flex-col items-center justify-center text-center text-muted-foreground">
+                <svg className="mb-2 h-8 w-8 text-muted-foreground/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
                 <span>Click &quot;Dispatch Synthetic Webhook&quot; to test inbound inquiry creation</span>

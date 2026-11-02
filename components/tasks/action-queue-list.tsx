@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CheckCircle2, Clock, Phone, AlertCircle, Calendar, ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { type TaskRecord, taskService } from "@/lib/services/task-service";
+import { isBallito } from "@/lib/utils";
 
 interface ActionQueueListProps {
   tasks: TaskRecord[];
@@ -17,19 +18,48 @@ export function ActionQueueList({ tasks, type, title, badgeCount, onRefresh }: A
   const [completeModalTask, setCompleteModalTask] = useState<TaskRecord | null>(null);
   const [outcomeNotes, setOutcomeNotes] = useState("");
 
-  const handleCompleteSubmit = (e: React.FormEvent) => {
+  const handleCompleteSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!completeModalTask) return;
 
-    taskService.completeTask("hoffman-audiology", completeModalTask.id, outcomeNotes, "Dr. Kara Hoffman");
+    try {
+      await fetch("/api/v1/tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "complete",
+          orgId: "org-hoffman-01",
+          taskId: completeModalTask.id,
+          outcomeNotes,
+          staffName: "Dr. Kara Hoffman",
+        }),
+      });
+    } catch {
+      taskService.completeTask("org-hoffman-01", completeModalTask.id, outcomeNotes, "Dr. Kara Hoffman");
+    }
+
     setCompleteModalTask(null);
     setOutcomeNotes("");
     onRefresh();
   };
 
-  const handleQuickReschedule = (taskId: string, days: number) => {
+  const handleQuickReschedule = async (taskId: string, days: number) => {
     const newDue = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
-    taskService.rescheduleTask("hoffman-audiology", taskId, newDue, "Dr. Kara Hoffman");
+    try {
+      await fetch("/api/v1/tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "reschedule",
+          orgId: "org-hoffman-01",
+          taskId,
+          newDueAt: newDue,
+          staffName: "Dr. Kara Hoffman",
+        }),
+      });
+    } catch {
+      taskService.rescheduleTask("org-hoffman-01", taskId, newDue, "Dr. Kara Hoffman");
+    }
     onRefresh();
   };
 
@@ -100,7 +130,7 @@ export function ActionQueueList({ tasks, type, title, badgeCount, onRefresh }: A
                     </span>
                   )}
                   <span>•</span>
-                  <span>{task.locationId === "loc-ballito" ? "Ballito Clinic" : "Durban Clinic"}</span>
+                  <span>{isBallito(task.locationId) ? "Ballito Clinic" : "Durban Clinic"}</span>
                   <span>•</span>
                   <span className="font-mono text-[11px] text-foreground font-semibold">
                     Due: {new Date(task.due_at).toLocaleTimeString("en-ZA", { hour: "2-digit", minute: "2-digit" })}

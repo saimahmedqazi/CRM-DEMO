@@ -23,12 +23,13 @@ export function CreateTaskModal({ isOpen, onClose, onTaskCreated }: CreateTaskMo
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const dueAt = new Date(Date.now() + Number(dueHours) * 60 * 60 * 1000).toISOString();
 
-    taskService.createTask({
-      organizationId: "hoffman-audiology",
+    const payload = {
+      action: "create",
+      organizationId: "org-hoffman-01",
       contactId: "cnt-manual",
       contactName,
       contactPhone,
@@ -39,7 +40,17 @@ export function CreateTaskModal({ isOpen, onClose, onTaskCreated }: CreateTaskMo
       priority,
       dueAt,
       staffName: "Dr. Kara Hoffman",
-    });
+    };
+
+    try {
+      await fetch("/api/v1/tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch {
+      taskService.createTask(payload as any);
+    }
 
     onTaskCreated();
     onClose();

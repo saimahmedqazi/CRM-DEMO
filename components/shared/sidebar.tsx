@@ -57,7 +57,10 @@ export function Sidebar({ orgSlug, orgName = "Hoffman Audiology" }: SidebarProps
       {/* Nav Links */}
       <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1">
         {navItems.map((item) => {
-          const isActive = pathname.startsWith(item.href);
+          const isActive =
+            item.name === "Settings"
+              ? pathname.includes(`/${orgSlug}/settings`)
+              : pathname.startsWith(item.href);
           const Icon = item.icon;
           return (
             <Link

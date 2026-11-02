@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Building, Save, Palette, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SettingsNav } from "@/components/shared/settings-nav";
 
 export default function GeneralSettingsPage() {
   const [orgName, setOrgName] = useState("Hoffman Audiology Inc.");
@@ -26,6 +27,8 @@ export default function GeneralSettingsPage() {
           Configure branding, timezone, currency, and multi-tenant preferences for Hoffman Audiology Inc.
         </p>
       </div>
+
+      <SettingsNav />
 
       <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
         <form onSubmit={handleSave} className="space-y-6">

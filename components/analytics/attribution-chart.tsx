@@ -10,19 +10,19 @@ interface AttributionChartProps {
 
 export function AttributionChart({ channels, onSelectChannel }: AttributionChartProps) {
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl">
+    <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h3 className="text-base font-bold text-white">Marketing Channel Attribution</h3>
-          <p className="text-xs text-slate-400">
+          <h3 className="text-base font-bold text-foreground">Marketing Channel Attribution</h3>
+          <p className="text-xs text-muted-foreground">
             Conversion rates and verified clinical revenue across acquisition sources
           </p>
         </div>
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm text-slate-300">
-          <thead className="border-b border-slate-800 text-xs font-semibold uppercase text-slate-400">
+        <table className="w-full text-left text-sm text-foreground">
+          <thead className="border-b border-border text-xs font-semibold uppercase text-muted-foreground">
             <tr>
               <th className="pb-3">Source Channel</th>
               <th className="pb-3 text-right">Inquiries</th>
@@ -32,37 +32,37 @@ export function AttributionChart({ channels, onSelectChannel }: AttributionChart
               <th className="pb-3 text-right">Confirmed Revenue</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60">
+          <tbody className="divide-y divide-border">
             {channels.map((ch) => (
               <tr
                 key={ch.source}
                 onClick={() => onSelectChannel(ch.source)}
-                className="group cursor-pointer hover:bg-slate-800/40"
+                className="group cursor-pointer hover:bg-muted/40 transition-colors"
               >
-                <td className="py-3 font-semibold text-white group-hover:text-indigo-400">
+                <td className="py-3 font-semibold text-foreground group-hover:text-primary">
                   {ch.label}
                 </td>
-                <td className="py-3 text-right font-medium text-slate-200">
+                <td className="py-3 text-right font-medium text-foreground">
                   {ch.inquiryCount}
                 </td>
-                <td className="py-3 text-right text-slate-400">{ch.bookedCount}</td>
-                <td className="py-3 text-right text-emerald-400 font-medium">
+                <td className="py-3 text-right text-muted-foreground">{ch.bookedCount}</td>
+                <td className="py-3 text-right text-emerald-600 dark:text-emerald-400 font-medium">
                   {ch.attendedCount}
                 </td>
                 <td className="py-3 text-right">
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs font-bold ${
                       ch.conversionRate >= 40
-                        ? "bg-emerald-500/10 text-emerald-400"
+                        ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300"
                         : ch.conversionRate >= 20
-                        ? "bg-amber-500/10 text-amber-400"
-                        : "bg-slate-800 text-slate-400"
+                        ? "bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300"
+                        : "bg-muted text-muted-foreground"
                     }`}
                   >
                     {ch.conversionRate}%
                   </span>
                 </td>
-                <td className="py-3 text-right font-bold text-emerald-400">
+                <td className="py-3 text-right font-bold text-emerald-600 dark:text-emerald-400">
                   R {(ch.revenueCents / 100).toLocaleString("en-ZA", { minimumFractionDigits: 2 })}
                 </td>
               </tr>

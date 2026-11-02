@@ -16,9 +16,11 @@ interface KanbanBoardProps {
 const DEFAULT_STAGES = [
   { id: "new", name: "New Inquiry", color: "#3b82f6" },
   { id: "contacted", name: "Contacted", color: "#8b5cf6" },
+  { id: "waiting_response", name: "Awaiting Response", color: "#6366f1" },
   { id: "follow_up_needed", name: "Follow-up Needed", color: "#f59e0b" },
   { id: "appointment_booked", name: "Appointment Booked", color: "#10b981" },
   { id: "completed", name: "Completed", color: "#059669", is_terminal: true },
+  { id: "lost", name: "Lost / Archived", color: "#64748b", is_terminal: true },
 ];
 
 export function KanbanBoard({ initialInquiries, orgSlug }: KanbanBoardProps) {
@@ -45,7 +47,8 @@ export function KanbanBoard({ initialInquiries, orgSlug }: KanbanBoardProps) {
   const handleAdvanceStage = async (inquiryId: string, currentStatus: string) => {
     const stageFlow: Record<string, InquiryStatus> = {
       new: "contacted",
-      contacted: "follow_up_needed",
+      contacted: "waiting_response",
+      waiting_response: "follow_up_needed",
       follow_up_needed: "appointment_booked",
       appointment_booked: "completed",
     };

@@ -27,16 +27,28 @@ export function MergeLeadsDialog({ isOpen, inquiries, onClose, onMerged }: Merge
   const primaryContact = contacts.find((c) => c.id === primaryId);
   const secondaryContact = contacts.find((c) => c.id === secondaryId);
 
-  const handleMerge = () => {
+  const handleMerge = async () => {
     if (!primaryId || !secondaryId || primaryId === secondaryId) return;
     setLoading(true);
 
     try {
-      leadService.reparentRecordsOnMerge("hoffman-audiology", primaryId, secondaryId, "Dr. Kara Hoffman");
-      onMerged();
-      onClose();
+      await fetch("/api/v1/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "merge",
+          orgId: "org-hoffman-01",
+          primaryContactId: primaryId,
+          secondaryContactId: secondaryId,
+          staffName: "Dr. Kara Hoffman",
+        }),
+      });
+    } catch {
+      leadService.reparentRecordsOnMerge("org-hoffman-01", primaryId, secondaryId, "Dr. Kara Hoffman");
     } finally {
       setLoading(false);
+      onMerged();
+      onClose();
     }
   };
 

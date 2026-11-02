@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Users, UserPlus, Shield, Mail, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SettingsNav } from "@/components/shared/settings-nav";
 
 interface TeamMember {
   id: string;
@@ -66,6 +67,8 @@ export default function TeamSettingsPage() {
           <span>Invite Staff Member</span>
         </Button>
       </div>
+
+      <SettingsNav />
 
       <div className="bg-card border border-border rounded-xl overflow-hidden shadow-sm">
         <table className="w-full text-left text-sm">

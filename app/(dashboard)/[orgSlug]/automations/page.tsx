@@ -67,10 +67,10 @@ export default function AutomationsPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">
             Workflow Automation Engine
           </h1>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-muted-foreground">
             Durable triggers, condition trees, and automated follow-up actions preventing inquiries from falling through the cracks.
           </p>
         </div>
@@ -78,13 +78,13 @@ export default function AutomationsPage() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setActiveTab("templates")}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-xs font-semibold text-slate-300 hover:bg-slate-700 transition"
+            className="rounded-lg border border-input bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted transition"
           >
             Browse Practice Templates
           </button>
           <button
             onClick={() => setIsBuilderOpen(true)}
-            className="flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-indigo-600/30 hover:bg-indigo-500 transition"
+            className="flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition"
           >
             <span>+</span> Create Custom Rule
           </button>
@@ -92,56 +92,56 @@ export default function AutomationsPage() {
       </div>
 
       {/* Clinical Policy & Safety Disclosure */}
-      <div className="rounded-xl border border-blue-500/30 bg-blue-500/10 p-4 text-xs text-blue-200">
-        <div className="font-semibold text-white mb-1 flex items-center gap-1.5">
+      <div className="rounded-xl border border-blue-200 dark:border-blue-900 bg-blue-50/70 dark:bg-blue-950/20 p-4 text-xs text-blue-900 dark:text-blue-200">
+        <div className="font-semibold text-foreground mb-1 flex items-center gap-1.5">
           <span>Clinical Policy & Follow-up Configuration Notice</span>
         </div>
-        <p className="text-slate-300 leading-relaxed">
+        <p className="text-muted-foreground leading-relaxed">
           In accordance with medical practice protocols, automation templates currently manage <strong>internal staff tasks</strong>, priority SLAs, and lead routing. Any outbound patient messaging (SMS, WhatsApp) or calendar alteration is configurable per workspace policy and requires clinical staff approval before transmission. No automated messages are dispatched without prior clinic configuration.
         </p>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg">
-          <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+        <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+          <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Active Workflows
           </div>
-          <div className="mt-2 text-2xl font-bold text-white">
-            {activeCount} <span className="text-sm font-normal text-slate-500">/ {rules.length} total</span>
+          <div className="mt-2 text-2xl font-bold text-foreground">
+            {activeCount} <span className="text-sm font-normal text-muted-foreground">/ {rules.length} total</span>
           </div>
-          <div className="mt-1 text-xs text-indigo-400">Automating lead management</div>
+          <div className="mt-1 text-xs text-primary font-medium">Automating lead management</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg">
-          <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+        <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+          <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Total Actions Executed
           </div>
-          <div className="mt-2 text-2xl font-bold text-emerald-400">
+          <div className="mt-2 text-2xl font-bold text-emerald-600 dark:text-emerald-400">
             {totalExecutions}
           </div>
-          <div className="mt-1 text-xs text-slate-500">Tasks created & leads routed</div>
+          <div className="mt-1 text-xs text-muted-foreground">Tasks created & leads routed</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg">
-          <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+        <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+          <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Engine Reliability
           </div>
-          <div className="mt-2 text-2xl font-bold text-emerald-400">
+          <div className="mt-2 text-2xl font-bold text-emerald-600 dark:text-emerald-400">
             100%
           </div>
-          <div className="mt-1 text-xs text-slate-500">Loop guard & idempotency safe</div>
+          <div className="mt-1 text-xs text-muted-foreground">Loop guard & idempotency safe</div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-800">
+      <div className="flex border-b border-border">
         <button
           onClick={() => setActiveTab("workflows")}
           className={`border-b-2 px-4 py-2.5 text-sm font-semibold transition ${
             activeTab === "workflows"
-              ? "border-indigo-500 text-indigo-400"
-              : "border-transparent text-slate-400 hover:text-white"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground"
           }`}
         >
           Active Workflows ({rules.length})
@@ -151,8 +151,8 @@ export default function AutomationsPage() {
           onClick={() => setActiveTab("templates")}
           className={`border-b-2 px-4 py-2.5 text-sm font-semibold transition ${
             activeTab === "templates"
-              ? "border-indigo-500 text-indigo-400"
-              : "border-transparent text-slate-400 hover:text-white"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground"
           }`}
         >
           Practice Templates ({PRACTICE_TEMPLATES.length})
@@ -162,8 +162,8 @@ export default function AutomationsPage() {
           onClick={() => setActiveTab("history")}
           className={`border-b-2 px-4 py-2.5 text-sm font-semibold transition ${
             activeTab === "history"
-              ? "border-indigo-500 text-indigo-400"
-              : "border-transparent text-slate-400 hover:text-white"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground"
           }`}
         >
           Execution Audit Log ({executions.length})
@@ -174,45 +174,45 @@ export default function AutomationsPage() {
       {activeTab === "workflows" && (
         <div className="space-y-4">
           {rules.length === 0 ? (
-            <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-12 text-center text-xs text-slate-400">
+            <div className="rounded-xl border border-border bg-card p-12 text-center text-xs text-muted-foreground">
               No automation rules configured yet. Click &quot;Create Custom Rule&quot; or install a practice template.
             </div>
           ) : (
             rules.map((rule) => (
               <div
                 key={rule.id}
-                className="flex flex-col gap-4 rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg sm:flex-row sm:items-center sm:justify-between hover:border-slate-700 transition"
+                className="flex flex-col gap-4 rounded-xl border border-border bg-card p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between hover:border-primary/40 transition"
               >
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="rounded bg-indigo-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-indigo-400">
+                    <span className="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
                       Trigger: {rule.trigger_type.replace(/_/g, " ")}
                     </span>
-                    <span className="text-xs text-slate-500">
+                    <span className="text-xs text-muted-foreground">
                       • {rule.execution_count} runs
                     </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-white">{rule.name}</h3>
-                  <p className="text-xs text-slate-400">{rule.description}</p>
+                  <h3 className="text-base font-bold text-foreground">{rule.name}</h3>
+                  <p className="text-xs text-muted-foreground">{rule.description}</p>
 
                   <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
                     {rule.conditions.length > 0 ? (
                       rule.conditions.map((c, i) => (
-                        <span key={i} className="rounded bg-slate-800 px-2 py-0.5 text-[11px] text-amber-300">
+                        <span key={i} className="rounded bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 px-2 py-0.5 text-[11px]">
                           If {c.field} {c.operator} &quot;{c.value}&quot;
                         </span>
                       ))
                     ) : (
-                      <span className="rounded bg-slate-800 px-2 py-0.5 text-[11px] text-slate-400">
+                      <span className="rounded bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
                         Always executes
                       </span>
                     )}
 
-                    <span className="text-slate-500">→</span>
+                    <span className="text-muted-foreground">→</span>
 
                     {rule.actions.map((a, i) => (
-                      <span key={i} className="rounded bg-emerald-950/80 border border-emerald-500/30 px-2 py-0.5 text-[11px] text-emerald-300">
+                      <span key={i} className="rounded bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 px-2 py-0.5 text-[11px] text-emerald-800 dark:text-emerald-300 font-medium">
                         {a.type.replace(/_/g, " ")}
                       </span>
                     ))}
@@ -224,8 +224,8 @@ export default function AutomationsPage() {
                     onClick={() => handleToggle(rule.id, rule.is_active)}
                     className={`rounded-full px-3 py-1 text-xs font-bold transition ${
                       rule.is_active
-                        ? "bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30"
-                        : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                        ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 hover:bg-emerald-200"
+                        : "bg-muted text-muted-foreground hover:bg-muted/80"
                     }`}
                   >
                     {rule.is_active ? "Enabled ✓" : "Disabled"}
@@ -243,31 +243,31 @@ export default function AutomationsPage() {
           {PRACTICE_TEMPLATES.map((tpl) => (
             <div
               key={tpl.id}
-              className="flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg"
+              className="flex flex-col justify-between rounded-xl border border-border bg-card p-6 shadow-sm"
             >
               <div>
-                <span className="rounded bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold text-indigo-400 uppercase">
+                <span className="rounded bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary uppercase">
                   {tpl.category.replace(/_/g, " ")}
                 </span>
-                <h3 className="mt-2 text-base font-bold text-white">{tpl.name}</h3>
-                <p className="mt-1 text-xs text-slate-400 leading-relaxed">
+                <h3 className="mt-2 text-base font-bold text-foreground">{tpl.name}</h3>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
                   {tpl.description}
                 </p>
 
-                <div className="mt-4 space-y-1.5 text-xs text-slate-300">
+                <div className="mt-4 space-y-1.5 text-xs text-foreground">
                   <div>
-                    <strong className="text-indigo-300">Trigger:</strong> {tpl.trigger_type.replace(/_/g, " ")}
+                    <strong className="text-primary">Trigger:</strong> {tpl.trigger_type.replace(/_/g, " ")}
                   </div>
                   <div>
-                    <strong className="text-emerald-300">Actions:</strong> {tpl.actions.map((a) => a.type).join(", ")}
+                    <strong className="text-emerald-600 dark:text-emerald-400">Actions:</strong> {tpl.actions.map((a) => a.type).join(", ")}
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 border-t border-slate-800 pt-4 text-right">
+              <div className="mt-6 border-t border-border pt-4 text-right">
                 <button
                   onClick={() => handleInstallTemplate(tpl.id)}
-                  className="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-indigo-600/30 hover:bg-indigo-500 transition"
+                  className="rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition"
                 >
                   Install Template →
                 </button>

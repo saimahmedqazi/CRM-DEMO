@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { type InquiryRecord, type InquiryStatus, leadService } from "@/lib/services/lead-service";
+import { getClinicName } from "@/lib/utils";
 import { AIAssistantWidget } from "@/components/lead-inbox/ai-assistant-widget";
 
 interface EnrichedInquiry extends InquiryRecord {
@@ -40,27 +41,71 @@ export function LeadDetailDrawer({ inquiry, orgSlug, onClose, onUpdated }: LeadD
 
   if (!inquiry) return null;
 
-  const handleStatusChange = (newStatus: InquiryStatus) => {
+  const handleStatusChange = async (newStatus: InquiryStatus) => {
     if (newStatus === "lost") {
       setShowLossModal(true);
       return;
     }
     setStatus(newStatus);
-    leadService.updateInquiryStatus("hoffman-audiology", inquiry.id, newStatus, undefined, "Dr. Kara Hoffman");
+    try {
+      await fetch("/api/v1/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_status",
+          orgId: "org-hoffman-01",
+          inquiryId: inquiry.id,
+          newStatus,
+          staffName: "Dr. Kara Hoffman",
+        }),
+      });
+    } catch {
+      leadService.updateInquiryStatus("org-hoffman-01", inquiry.id, newStatus, undefined, "Dr. Kara Hoffman");
+    }
     onUpdated();
   };
 
-  const confirmLost = () => {
+  const confirmLost = async () => {
     setStatus("lost");
-    leadService.updateInquiryStatus("hoffman-audiology", inquiry.id, "lost", lossReason, "Dr. Kara Hoffman");
+    try {
+      await fetch("/api/v1/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_status",
+          orgId: "org-hoffman-01",
+          inquiryId: inquiry.id,
+          newStatus: "lost",
+          lossReason,
+          staffName: "Dr. Kara Hoffman",
+        }),
+      });
+    } catch {
+      leadService.updateInquiryStatus("org-hoffman-01", inquiry.id, "lost", lossReason, "Dr. Kara Hoffman");
+    }
     setShowLossModal(false);
     onUpdated();
   };
 
-  const handleAddNote = (e: React.FormEvent) => {
+  const handleAddNote = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!noteText.trim()) return;
-    leadService.addActivityNote("hoffman-audiology", inquiry.contact_id, noteText.trim(), "Dr. Kara Hoffman");
+
+    try {
+      await fetch(`/api/v1/contacts/${inquiry.contact_id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "add_note",
+          orgId: "org-hoffman-01",
+          noteText: noteText.trim(),
+          staffName: "Dr. Kara Hoffman",
+        }),
+      });
+    } catch {
+      leadService.addActivityNote("org-hoffman-01", inquiry.contact_id, noteText.trim(), "Dr. Kara Hoffman");
+    }
+
     setNoteText("");
     onUpdated();
   };
@@ -143,7 +188,7 @@ export function LeadDetailDrawer({ inquiry, orgSlug, onClose, onUpdated }: LeadD
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground font-medium">Assigned Clinic</span>
               <span className="font-medium text-foreground">
-                {inquiry.location_id === "loc-ballito" ? "Ballito (The Well)" : "Durban (Musgrave)"}
+                {getClinicName(inquiry.location_id)}
               </span>
             </div>
           </div>

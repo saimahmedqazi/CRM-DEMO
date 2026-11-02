@@ -24,28 +24,41 @@ export function CreateLeadDialog({ isOpen, onClose, onLeadCreated }: CreateLeadD
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
+    const payload = {
+      action: "create",
+      orgId: "org-hoffman-01",
+      organizationId: "org-hoffman-01",
+      firstName,
+      lastName,
+      phone,
+      email,
+      locationId,
+      source,
+      priority,
+      notes,
+      staffName: "Dr. Kara Hoffman",
+    };
+
     try {
-      leadService.createLead({
-        organizationId: "hoffman-audiology",
-        firstName,
-        lastName,
-        phone,
-        email,
-        locationId,
-        source,
-        priority,
-        notes,
-        staffName: "Dr. Kara Hoffman",
+      const res = await fetch("/api/v1/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
-      onLeadCreated();
-      onClose();
+      if (!res.ok) {
+        leadService.createLead(payload as any);
+      }
+    } catch {
+      leadService.createLead(payload as any);
     } finally {
       setLoading(false);
+      onLeadCreated();
+      onClose();
     }
   };
 

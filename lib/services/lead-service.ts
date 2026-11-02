@@ -1,4 +1,5 @@
 import { normalizePhone, normalizeEmail, normalizeName } from "@/lib/deduplication/normalizer";
+import { matchesLocationFilter } from "@/lib/utils";
 import {
   persistentDemoStore,
   type DemoContact,
@@ -251,7 +252,7 @@ class LeadRepository {
     }
 
     if (locationId && locationId !== "all") {
-      filtered = filtered.filter((i) => i.location_id === locationId);
+      filtered = filtered.filter((i) => matchesLocationFilter(i.location_id, locationId));
     }
 
     // Join with contact for display & search
@@ -286,6 +287,65 @@ class LeadRepository {
 
     return {
       inquiries: paginated,
+      totalCount,
+      page,
+      pageSize,
+      totalPages: Math.ceil(totalCount / pageSize),
+    };
+  }
+
+  public getContacts(params: {
+    orgId: string;
+    search?: string;
+    locationId?: string;
+    page?: number;
+    pageSize?: number;
+  }) {
+    const targetOrg = normalizeOrgId(params.orgId);
+    const { search, locationId, page = 1, pageSize = 50 } = params;
+    const store = persistentDemoStore.getData();
+
+    let contacts = store.contacts.filter((c) => normalizeOrgId(c.organization_id) === targetOrg);
+
+    if (locationId && locationId !== "all") {
+      contacts = contacts.filter((c) => matchesLocationFilter(c.preferred_location_id, locationId));
+    }
+
+    if (search && search.trim() !== "") {
+      const q = search.toLowerCase();
+      contacts = contacts.filter(
+        (c) =>
+          `${c.first_name} ${c.last_name}`.toLowerCase().includes(q) ||
+          c.email?.toLowerCase().includes(q) ||
+          c.phone?.includes(q) ||
+          c.tags?.some((t) => t.toLowerCase().includes(q))
+      );
+    }
+
+    const enriched = contacts.map((c) => {
+      const inqs = store.inquiries.filter((i) => i.contact_id === c.id);
+      const appts = store.appointments.filter((a) => a.contact_id === c.id);
+      const acts = store.activities
+        .filter((a) => a.contact_id === c.id)
+        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
+      return {
+        ...c,
+        inquiryCount: inqs.length,
+        appointmentCount: appts.length,
+        latestActivity: acts[0] || null,
+        activeInquiry: inqs[0] || null,
+      };
+    });
+
+    enriched.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
+    const totalCount = enriched.length;
+    const startIndex = (page - 1) * pageSize;
+    const paginated = enriched.slice(startIndex, startIndex + pageSize);
+
+    return {
+      contacts: paginated,
       totalCount,
       page,
       pageSize,

@@ -64,7 +64,7 @@ export function AppointmentList({
           <select
             value={filterLocation}
             onChange={(e) => setFilterLocation(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+            className="rounded-lg border border-input bg-background px-3 py-1.5 text-xs text-foreground focus:border-primary focus:outline-none shadow-xs"
           >
             <option value="all">All Locations</option>
             <option value="loc-dbn-01">Durban Clinic</option>
@@ -74,7 +74,7 @@ export function AppointmentList({
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+            className="rounded-lg border border-input bg-background px-3 py-1.5 text-xs text-foreground focus:border-primary focus:outline-none shadow-xs"
           >
             <option value="all">All Statuses</option>
             <option value="scheduled">Scheduled</option>
@@ -85,15 +85,15 @@ export function AppointmentList({
           </select>
         </div>
 
-        <span className="text-xs text-slate-400">
+        <span className="text-xs text-muted-foreground">
           Showing {filtered.length} of {appointments.length} appointments
         </span>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-slate-800 bg-slate-900/60 shadow-xl">
+      <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="border-b border-slate-800 bg-slate-800/50 text-xs font-semibold uppercase text-slate-400">
+          <table className="w-full text-left text-sm text-foreground">
+            <thead className="border-b border-border bg-muted/40 text-xs font-semibold uppercase text-muted-foreground">
               <tr>
                 <th className="px-4 py-3">Appointment Title</th>
                 <th className="px-4 py-3">Clinic</th>
@@ -103,31 +103,31 @@ export function AppointmentList({
                 <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-border">
               {filtered.map((appt) => {
                 const startTime = new Date(appt.start_time);
                 return (
-                  <tr key={appt.id} className="hover:bg-slate-800/30">
-                    <td className="px-4 py-3.5 font-medium text-white">
+                  <tr key={appt.id} className="hover:bg-muted/30 transition-colors">
+                    <td className="px-4 py-3.5 font-medium text-foreground">
                       <div>{appt.title}</div>
-                      <div className="text-[11px] text-slate-400 capitalize">
+                      <div className="text-[11px] text-muted-foreground capitalize">
                         {appt.appointment_type.replace(/_/g, " ")}
                       </div>
                     </td>
                     <td className="px-4 py-3.5 text-xs">
                       {appt.location_id?.includes("blt") ? (
-                        <span className="rounded bg-teal-500/10 px-2 py-0.5 font-medium text-teal-400">
+                        <span className="rounded bg-teal-100 text-teal-800 dark:bg-teal-950/60 dark:text-teal-300 border border-teal-200 dark:border-teal-800 px-2 py-0.5 font-medium">
                           Ballito
                         </span>
                       ) : (
-                        <span className="rounded bg-indigo-500/10 px-2 py-0.5 font-medium text-indigo-400">
+                        <span className="rounded bg-sky-100 text-sky-800 dark:bg-sky-950/60 dark:text-sky-300 border border-sky-200 dark:border-sky-800 px-2 py-0.5 font-medium">
                           Durban
                         </span>
                       )}
                     </td>
-                    <td className="px-4 py-3.5 text-xs text-slate-300">
+                    <td className="px-4 py-3.5 text-xs text-foreground">
                       <div>{startTime.toLocaleDateString("en-ZA", { timeZone: "Africa/Johannesburg" })}</div>
-                      <div className="text-slate-500">
+                      <div className="text-muted-foreground">
                         {startTime.toLocaleTimeString("en-ZA", { hour: "2-digit", minute: "2-digit", timeZone: "Africa/Johannesburg" })}
                       </div>
                     </td>
@@ -139,13 +139,13 @@ export function AppointmentList({
                         <div className="space-y-1">
                           {getOutcomeBadge(appt.outcome)}
                           {appt.revenue_cents ? (
-                            <div className="font-semibold text-emerald-400">
+                            <div className="font-semibold text-emerald-600 dark:text-emerald-400">
                               R {(appt.revenue_cents / 100).toLocaleString("en-ZA", { minimumFractionDigits: 2 })}
                             </div>
                           ) : null}
                         </div>
                       ) : (
-                        <span className="text-slate-500">—</span>
+                        <span className="text-muted-foreground">—</span>
                       )}
                     </td>
                     <td className="px-4 py-3.5 text-right">
@@ -153,7 +153,7 @@ export function AppointmentList({
                         {appt.status !== "attended" && (
                           <button
                             onClick={() => onOpenOutcomeModal(appt)}
-                            className="rounded bg-emerald-600/80 hover:bg-emerald-600 px-2.5 py-1 text-xs font-semibold text-white transition"
+                            className="rounded bg-emerald-600 hover:bg-emerald-700 px-2.5 py-1 text-xs font-semibold text-white transition shadow-xs"
                           >
                             Record Outcome
                           </button>
@@ -161,7 +161,7 @@ export function AppointmentList({
                         {appt.status !== "no_show" && appt.status !== "attended" && (
                           <button
                             onClick={() => onMarkNoShow(appt.id)}
-                            className="rounded border border-rose-500/30 bg-rose-500/10 hover:bg-rose-500/20 px-2.5 py-1 text-xs font-semibold text-rose-400 transition"
+                            className="rounded border border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 px-2.5 py-1 text-xs font-semibold text-rose-600 dark:text-rose-400 transition"
                           >
                             No-Show
                           </button>

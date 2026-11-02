@@ -79,10 +79,10 @@ export default function AnalyticsDashboardPage() {
       {/* Top Header & Filter Controls */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">
             Conversion & Attribution Analytics
           </h1>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-muted-foreground">
             Real-time attribution on which marketing channels, clinics, and staff convert inquiries into revenue.
           </p>
         </div>
@@ -91,17 +91,17 @@ export default function AnalyticsDashboardPage() {
           <select
             value={filterLocation}
             onChange={(e) => setFilterLocation(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-xs font-semibold text-white focus:border-indigo-500 focus:outline-none"
+            className="rounded-lg border border-input bg-background px-3 py-2 text-xs font-semibold text-foreground shadow-xs focus:border-primary focus:outline-none"
           >
             <option value="all">All Clinics (Durban & Ballito)</option>
             <option value="loc-dbn-01">Durban Clinic (Musgrave)</option>
-            <option value="loc-blt-01">Ballito Clinic</option>
+            <option value="loc-blt-01">Ballito Clinic (The Well)</option>
           </select>
 
           <select
             value={filterRange}
             onChange={(e) => setFilterRange(e.target.value as any)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-xs font-semibold text-white focus:border-indigo-500 focus:outline-none"
+            className="rounded-lg border border-input bg-background px-3 py-2 text-xs font-semibold text-foreground shadow-xs focus:border-primary focus:outline-none"
           >
             <option value="all">All Time</option>
             <option value="7d">Last 7 Days</option>
@@ -112,7 +112,7 @@ export default function AnalyticsDashboardPage() {
       </div>
 
       {loading || !metrics ? (
-        <div className="p-12 text-center text-sm text-slate-500">
+        <div className="p-12 text-center text-sm text-muted-foreground">
           Calculating practice attribution analytics...
         </div>
       ) : (
@@ -121,53 +121,53 @@ export default function AnalyticsDashboardPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div
               onClick={() => handleDrilldown("stage", "new", "All Inbound Inquiries")}
-              className="cursor-pointer rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg hover:border-slate-700 transition"
+              className="cursor-pointer rounded-xl border border-border bg-card p-5 shadow-sm hover:border-primary/50 transition"
             >
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Inbound Inquiries
               </div>
-              <div className="mt-2 text-2xl font-bold text-white">
+              <div className="mt-2 text-2xl font-bold text-foreground">
                 {metrics.totalInquiries}
               </div>
-              <div className="mt-1 text-xs text-indigo-400">Click to inspect leads →</div>
+              <div className="mt-1 text-xs text-primary font-medium">Click to inspect leads →</div>
             </div>
 
             <div
               onClick={() => handleDrilldown("stage", "attended", "Attended Appointments")}
-              className="cursor-pointer rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg hover:border-slate-700 transition"
+              className="cursor-pointer rounded-xl border border-border bg-card p-5 shadow-sm hover:border-primary/50 transition"
             >
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Attended Conversion Rate
               </div>
-              <div className="mt-2 text-2xl font-bold text-emerald-400">
+              <div className="mt-2 text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                 {metrics.overallConversionRate}%
               </div>
-              <div className="mt-1 text-xs text-slate-500">
+              <div className="mt-1 text-xs text-muted-foreground">
                 {metrics.totalAttended} attended of {metrics.totalInquiries} leads
               </div>
             </div>
 
-            <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg">
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+              <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Confirmed Revenue (ZAR)
               </div>
-              <div className="mt-2 text-2xl font-bold text-emerald-400">
+              <div className="mt-2 text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                 R {(metrics.totalRevenueCents / 100).toLocaleString("en-ZA", { minimumFractionDigits: 2 })}
               </div>
-              <div className="mt-1 text-xs text-slate-500">Auditable clinical billing</div>
+              <div className="mt-1 text-xs text-muted-foreground">Auditable clinical billing</div>
             </div>
 
-            <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg">
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+              <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Avg Response Velocity
               </div>
               <div className="mt-2 flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-white">
+                <span className="text-2xl font-bold text-foreground">
                   {metrics.avgResponseMinutes} min
                 </span>
-                <span className="text-xs font-semibold text-emerald-400">Within 2h SLA</span>
+                <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">Within 2h SLA</span>
               </div>
-              <div className="mt-1 text-xs text-slate-500">Calculated in SAST clinic hours</div>
+              <div className="mt-1 text-xs text-muted-foreground">Calculated in SAST clinic hours</div>
             </div>
           </div>
 

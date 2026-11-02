@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MapPin, Clock, Plus, CheckCircle2, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SettingsNav } from "@/components/shared/settings-nav";
 
 interface Location {
   id: string;
@@ -74,6 +75,8 @@ export default function LocationsSettingsPage() {
           <span>Add New Location</span>
         </Button>
       </div>
+
+      <SettingsNav />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Locations List */}

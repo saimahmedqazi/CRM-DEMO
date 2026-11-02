@@ -54,16 +54,16 @@ export function ScheduleAppointmentModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-lg rounded-xl border border-slate-700 bg-slate-900 p-6 shadow-2xl">
-        <div className="mb-5 flex items-center justify-between border-b border-slate-800 pb-3">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
+      <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-2xl">
+        <div className="mb-5 flex items-center justify-between border-b border-border pb-3">
           <div>
-            <h2 className="text-lg font-bold text-white">Schedule Appointment</h2>
-            <p className="text-xs text-slate-400">Book clinical appointment for Durban or Ballito clinic</p>
+            <h2 className="text-lg font-bold text-foreground">Schedule Appointment</h2>
+            <p className="text-xs text-muted-foreground">Book clinical appointment for Durban or Ballito clinic</p>
           </div>
           <button
             onClick={onClose}
-            className="rounded p-1 text-slate-400 hover:bg-slate-800 hover:text-white"
+            className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
           >
             ✕
           </button>
@@ -71,7 +71,7 @@ export function ScheduleAppointmentModal({
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
               Patient Full Name <span className="text-rose-500">*</span>
             </label>
             <input
@@ -79,34 +79,34 @@ export function ScheduleAppointmentModal({
               value={patientName}
               onChange={(e) => setPatientName(e.target.value)}
               placeholder="e.g. Sipho Ndlovu"
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
               required
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
                 Clinic Location
               </label>
               <select
                 value={locationId}
                 onChange={(e) => setLocationId(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
               >
                 <option value="loc-dbn-01">Durban Clinic (Musgrave)</option>
-                <option value="loc-blt-01">Ballito Clinic</option>
+                <option value="loc-blt-01">Ballito Clinic (The Well)</option>
               </select>
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
                 Appointment Type
               </label>
               <select
                 value={appointmentType}
                 onChange={(e) => setAppointmentType(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
               >
                 <option value="hearing_assessment">Diagnostic Audiogram (60m)</option>
                 <option value="hearing_aid_fitting">Hearing Aid Fitting (60m)</option>
@@ -119,39 +119,39 @@ export function ScheduleAppointmentModal({
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
                 Date
               </label>
               <input
                 type="date"
                 value={appointmentDate}
                 onChange={(e) => setAppointmentDate(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
                 required
               />
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
                 Start Time
               </label>
               <input
                 type="time"
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
                 required
               />
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
                 Duration
               </label>
               <select
                 value={durationMinutes}
                 onChange={(e) => setDurationMinutes(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
               >
                 <option value="30">30 min</option>
                 <option value="45">45 min</option>
@@ -161,18 +161,18 @@ export function ScheduleAppointmentModal({
             </div>
           </div>
 
-          <div className="mt-6 flex justify-end gap-3 border-t border-slate-800 pt-4">
+          <div className="mt-6 flex justify-end gap-3 border-t border-border pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800"
+              className="rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-muted"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading || !patientName.trim()}
-              className="rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white hover:bg-indigo-500 disabled:opacity-50"
+              className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
             >
               {loading ? "Scheduling..." : "Schedule Appointment"}
             </button>

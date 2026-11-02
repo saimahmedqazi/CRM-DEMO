@@ -13,6 +13,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { type InquiryRecord } from "@/lib/services/lead-service";
+import { getClinicName } from "@/lib/utils";
 
 interface EnrichedInquiry extends InquiryRecord {
   contactName: string;
@@ -127,7 +128,7 @@ export function InboxTable({ inquiries, onSelectInquiry }: InboxTableProps) {
                   </div>
                 </td>
                 <td className="py-3.5 px-4 text-xs font-medium text-foreground">
-                  {inq.location_id === "loc-ballito" ? "Ballito (The Well)" : "Durban (Musgrave)"}
+                  {getClinicName(inq.location_id)}
                 </td>
                 <td className="py-3.5 px-4">{getStatusBadge(inq.status)}</td>
                 <td className="py-3.5 px-4">{getPriorityBadge(inq.priority)}</td>

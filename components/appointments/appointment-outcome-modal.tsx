@@ -38,18 +38,18 @@ export function AppointmentOutcomeModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-lg rounded-xl border border-slate-700 bg-slate-900 p-6 shadow-2xl">
-        <div className="mb-5 flex items-center justify-between border-b border-slate-800 pb-3">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
+      <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-2xl">
+        <div className="mb-5 flex items-center justify-between border-b border-border pb-3">
           <div>
-            <h2 className="text-lg font-bold text-white">Record Appointment Outcome</h2>
-            <p className="text-xs text-slate-400">
+            <h2 className="text-lg font-bold text-foreground">Record Appointment Outcome</h2>
+            <p className="text-xs text-muted-foreground">
               {appointment.title}
             </p>
           </div>
           <button
             onClick={onClose}
-            className="rounded p-1 text-slate-400 hover:bg-slate-800 hover:text-white"
+            className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
           >
             ✕
           </button>
@@ -57,13 +57,13 @@ export function AppointmentOutcomeModal({
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
               Clinical / Commercial Outcome <span className="text-rose-500">*</span>
             </label>
             <select
               value={outcome}
               onChange={(e) => setOutcome(e.target.value as AppointmentOutcome)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
               required
             >
               <option value="hearing_aid_fitted">Hearing Aid Fitted & Dispensed</option>
@@ -76,11 +76,11 @@ export function AppointmentOutcomeModal({
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
               Verified Revenue (ZAR Rands)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-2 text-sm font-semibold text-slate-400">R</span>
+              <span className="absolute left-3 top-2 text-sm font-semibold text-muted-foreground">R</span>
               <input
                 type="number"
                 step="0.01"
@@ -88,16 +88,16 @@ export function AppointmentOutcomeModal({
                 value={revenueRands}
                 onChange={(e) => setRevenueRands(e.target.value)}
                 placeholder="0.00"
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 py-2 pl-8 pr-3 text-sm text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-lg border border-input bg-background py-2 pl-8 pr-3 text-sm text-foreground focus:border-primary focus:outline-none"
               />
             </div>
-            <p className="mt-1 text-[11px] text-slate-400">
+            <p className="mt-1 text-[11px] text-muted-foreground">
               Enter verified billing amount (e.g. R 42000 for binaural premium hearing aid package).
             </p>
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-foreground">
               Clinical & Consultation Notes <span className="text-rose-500">*</span>
             </label>
             <textarea
@@ -105,23 +105,23 @@ export function AppointmentOutcomeModal({
               onChange={(e) => setNotes(e.target.value)}
               rows={4}
               placeholder="e.g. Patient accepted Phonak Lumity 90 trial. Real-ear measurements within target..."
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 p-3 text-sm text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-lg border border-input bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
               required
             />
           </div>
 
-          <div className="mt-6 flex justify-end gap-3 border-t border-slate-800 pt-4">
+          <div className="mt-6 flex justify-end gap-3 border-t border-border pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800"
+              className="rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-muted"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading || !notes.trim()}
-              className="rounded-lg bg-emerald-600 px-5 py-2 text-sm font-semibold text-white hover:bg-emerald-500 disabled:opacity-50"
+              className="rounded-lg bg-emerald-600 px-5 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:opacity-50"
             >
               {loading ? "Recording..." : "Save Verified Outcome"}
             </button>

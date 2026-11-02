@@ -156,17 +156,17 @@ export default function AppointmentsPage() {
       {/* Top Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">
             Appointments & Clinical Outcomes
           </h1>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-muted-foreground">
             Track clinic schedules, attendance rates, verified clinical outcomes, and external calendar reconciliation.
           </p>
         </div>
 
         <button
           onClick={() => setIsScheduleOpen(true)}
-          className="flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-600/30 hover:bg-indigo-500 transition"
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition"
         >
           <span>+</span> Schedule Appointment
         </button>
@@ -174,61 +174,61 @@ export default function AppointmentsPage() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg">
-          <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+        <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+          <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Total Appointments
           </div>
-          <div className="mt-2 text-2xl font-bold text-white">{appointments.length}</div>
-          <div className="mt-1 text-xs text-slate-500">Scheduled across clinics</div>
+          <div className="mt-2 text-2xl font-bold text-foreground">{appointments.length}</div>
+          <div className="mt-1 text-xs text-muted-foreground">Scheduled across clinics</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg">
-          <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+        <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+          <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Attendance Rate
           </div>
-          <div className="mt-2 text-2xl font-bold text-emerald-400">{attendanceRate}%</div>
-          <div className="mt-1 text-xs text-slate-500">{totalAttended} attended, {totalNoShow} no-shows</div>
+          <div className="mt-2 text-2xl font-bold text-emerald-600 dark:text-emerald-400">{attendanceRate}%</div>
+          <div className="mt-1 text-xs text-muted-foreground">{totalAttended} attended, {totalNoShow} no-shows</div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg">
-          <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+        <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+          <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Verified Hearing Aid Revenue
           </div>
-          <div className="mt-2 text-2xl font-bold text-emerald-400">
+          <div className="mt-2 text-2xl font-bold text-emerald-600 dark:text-emerald-400">
             R {(appointments.reduce((sum, a) => sum + (a.revenue_cents || 0), 0) / 100).toLocaleString("en-ZA", { minimumFractionDigits: 2 })}
           </div>
-          <div className="mt-1 text-xs text-slate-500">Confirmed clinical outcomes</div>
+          <div className="mt-1 text-xs text-muted-foreground">Confirmed clinical outcomes</div>
         </div>
 
         <div
           onClick={() => setActiveTab("unmatched")}
-          className={`cursor-pointer rounded-xl border p-5 shadow-lg transition ${
+          className={`cursor-pointer rounded-xl border p-5 shadow-sm transition ${
             pendingUnmatchedCount > 0
-              ? "border-amber-500/50 bg-amber-500/10 hover:bg-amber-500/20"
-              : "border-slate-800 bg-slate-900/60"
+              ? "border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/20 hover:bg-amber-100/50"
+              : "border-border bg-card"
           }`}
         >
-          <div className="text-xs font-semibold uppercase tracking-wider text-amber-400">
+          <div className="text-xs font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400">
             Unmatched Review Queue
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-white">{pendingUnmatchedCount}</span>
+            <span className="text-2xl font-bold text-foreground">{pendingUnmatchedCount}</span>
             {pendingUnmatchedCount > 0 && (
-              <span className="text-xs font-semibold text-amber-400">Needs Review</span>
+              <span className="text-xs font-semibold text-amber-600 dark:text-amber-400">Needs Review</span>
             )}
           </div>
-          <div className="mt-1 text-xs text-slate-400">Ambiguous calendar bookings</div>
+          <div className="mt-1 text-xs text-muted-foreground">Ambiguous calendar bookings</div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-800">
+      <div className="flex border-b border-border">
         <button
           onClick={() => setActiveTab("appointments")}
           className={`border-b-2 px-4 py-2.5 text-sm font-semibold transition ${
             activeTab === "appointments"
-              ? "border-indigo-500 text-indigo-400"
-              : "border-transparent text-slate-400 hover:text-white"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground"
           }`}
         >
           Scheduled Appointments ({appointments.length})
@@ -237,13 +237,13 @@ export default function AppointmentsPage() {
           onClick={() => setActiveTab("unmatched")}
           className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-sm font-semibold transition ${
             activeTab === "unmatched"
-              ? "border-amber-500 text-amber-400"
-              : "border-transparent text-slate-400 hover:text-white"
+              ? "border-amber-500 text-amber-600 dark:text-amber-400"
+              : "border-transparent text-muted-foreground hover:text-foreground"
           }`}
         >
           <span>Unmatched Review Queue</span>
           {pendingUnmatchedCount > 0 && (
-            <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-xs text-amber-300">
+            <span className="rounded-full bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 text-xs text-amber-700 dark:text-amber-300">
               {pendingUnmatchedCount}
             </span>
           )}
