@@ -39,8 +39,11 @@ export function KanbanCard({ inquiry, onMoveStage, onClick }: KanbanCardProps) {
     }
   };
 
-  const hoursSinceInteraction =
-    (new Date().getTime() - new Date(inquiry.last_interaction_at).getTime()) / (1000 * 60 * 60);
+  const interactionDate = inquiry.last_interaction_at || inquiry.created_at || new Date().toISOString();
+  const interactionTime = new Date(interactionDate).getTime();
+  const hoursSinceInteraction = !isNaN(interactionTime)
+    ? Math.max(0, Math.round((Date.now() - interactionTime) / (1000 * 60 * 60)))
+    : 0;
 
   const isStalled =
     hoursSinceInteraction > 48 && !["completed", "lost", "appointment_booked"].includes(inquiry.status);
@@ -101,7 +104,7 @@ export function KanbanCard({ inquiry, onMoveStage, onClick }: KanbanCardProps) {
       <div className="flex items-center justify-between pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
         <span className="flex items-center gap-1">
           <Clock className="h-3 w-3" />
-          <span>{Math.round(hoursSinceInteraction)}h ago</span>
+          <span>{hoursSinceInteraction < 1 ? "Just now" : `${hoursSinceInteraction}h ago`}</span>
         </span>
         <button
           type="button"
